@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcSettingsService";
+
+package NotesMicroservice;
+
+service SettingsService
+{
+	rpc DeleteCompletedItems (Empty) returns  (Empty);
+	rpc DeleteAllItems (Empty) returns  (Empty);
+	rpc PostCanvas (Empty) returns  (Empty);
+
+}
+message Empty {}

@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "CronJobService.ServiceName": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "hangfire",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5000"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

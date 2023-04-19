@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "GrpcNotesService";
+
+package NotesMicroservice;
+
+service NotesService
+{
+	rpc Save (AddNote) returns (Note);
+	rpc GetAll (Empty) returns (SimplifiedNotes);
+	rpc GetOne (RequestId) returns (Note);
+	rpc Delete (RequestId) returns  (Empty);
+	rpc DeleteChecked (Empty) returns  (Empty);
+	rpc ChangeState (NoteState) returns  (Empty);
+	rpc Update (ModifiedNote) returns  (Empty);
+}
+message Empty {}
+message RequestId
+{
+  string Id = 1;
+}
+message AddNote
+{
+  string Title = 1;
+}
+message NoteState
+{
+    string Id = 1;
+    int32 State = 2;
+}
+message ModifiedNote
+{
+    string Id = 1;
+    string Title = 2;
+    int32 State = 3;
+}
+message Note
+{
+  string Id = 1;
+  string Title = 2;
+  int32 State = 3;
+  string Creator = 4;
+  google.protobuf.Timestamp CreationDate = 5;
+  string Updater = 6;
+  google.protobuf.Timestamp LastUpdateDate = 7;
+  string ListId = 8;
+}
+message SimplifiedNotes
+{
+    repeated SimplifiedNote SimplifiedNotes = 1;
+}
+message SimplifiedNote
+{
+    string Id = 1;
+    string Title = 2;
+    int32 State = 3;
+}
