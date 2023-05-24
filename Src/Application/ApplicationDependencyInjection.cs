@@ -8,9 +8,9 @@ public static class ApplicationDependencyInjection
 {
     public static IServiceCollection AddUseCases(this IServiceCollection services)
     {
-        services.AddScoped<INoteListsService, NoteListsService>();
-        services.AddScoped<INotesService, NotesService>();
-        services.AddScoped<IClearAllService, ClearAllService>();
+        services.AddScoped<INoteListsUseCase, NoteListsService>();
+        services.AddScoped<INotesUseCase, NotesService>();
+        services.AddScoped<IClearAllUseCase, ClearAllService>();
         services.AddScoped<INoteCleaningService, NoteCleaningService>();
         return services;
     }

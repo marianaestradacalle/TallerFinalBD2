@@ -23,12 +23,12 @@ public class NotesUseCasesTests
 {
     private MockRepository _mockRepository;
 
-    private readonly Mock<IGenericRepositoryService<Notes>> _mockNotesRepository;
+    private readonly Mock<IGenericRepositoryAdapter<Notes>> _mockNotesRepository;
     private readonly Mock<ILogger<NotesService>> mockLogger;
     private readonly IMapper _mockMapper;
     private readonly Mock<IUnitWork> _mockUnitWork;
     private readonly Mock<ContextSQLServer> mockSqlDb = new Mock<ContextSQLServer>();
-    private readonly Mock<INotificationServiceBusService> mockNotificationEventAdapter = new Mock<INotificationServiceBusService>();
+    private readonly Mock<INotificationServiceEventAdapter> mockNotificationEventAdapter = new Mock<INotificationServiceEventAdapter>();
     private readonly Mock<IOptionsMonitor<BusinessSettings>> _appSettings = new();
 
 
@@ -37,7 +37,7 @@ public class NotesUseCasesTests
         _mockRepository = new MockRepository(MockBehavior.Loose);
         _mockUnitWork = new Mock<IUnitWork>();
 
-        _mockNotesRepository = _mockRepository.Create<IGenericRepositoryService<Notes>>();
+        _mockNotesRepository = _mockRepository.Create<IGenericRepositoryAdapter<Notes>>();
         mockLogger = _mockRepository.Create<ILogger<NotesService>>();
         _appSettings.Setup(settings => settings.CurrentValue).Returns(new AppSettingsBuilder()
                 .WithServiceExceptionByDefault(new ServiceExceptionBuilder().Build())

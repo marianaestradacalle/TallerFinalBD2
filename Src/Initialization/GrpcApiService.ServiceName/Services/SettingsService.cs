@@ -6,10 +6,10 @@ namespace GrpcApiService.ServiceName.Services;
 public class SettingsService : GrpcSettingsService.SettingsService.SettingsServiceBase
 {
     private readonly INoteCleaningService _noteCleaningService;
-    private readonly IClearAllService _clearAllUseCase;
+    private readonly IClearAllUseCase _clearAllUseCase;
     
     public SettingsService(INoteCleaningService noteCleaningService,
-            IClearAllService clearAllUseCase)
+            IClearAllUseCase clearAllUseCase)
     {
         _noteCleaningService = noteCleaningService;
         _clearAllUseCase = clearAllUseCase;

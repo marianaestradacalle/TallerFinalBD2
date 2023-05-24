@@ -10,19 +10,19 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Application.Services.Simple;
-public class NotesService : INotesService
+public class NotesService : INotesUseCase
 {
-    private readonly IGenericRepositoryService<Notes> _notesRepository;
+    private readonly IGenericRepositoryAdapter<Notes> _notesRepository;
     private readonly ILogger<NotesService> _logger;
     private readonly IMapper _mapper;
-    private readonly INotificationServiceBusService _NotificationEventAdapter;
+    private readonly INotificationServiceEventAdapter _NotificationEventAdapter;
     private readonly BusinessSettings _settings;
     private readonly IUnitWork _unitWork;
 
-    public NotesService(IGenericRepositoryService<Notes> repository,
+    public NotesService(IGenericRepositoryAdapter<Notes> repository,
         ILogger<NotesService> logger,
         IMapper mapper,
-        INotificationServiceBusService notificationEventAdapter,
+        INotificationServiceEventAdapter notificationEventAdapter,
         IOptionsMonitor<BusinessSettings> settings,
         IUnitWork unitWork)
     {

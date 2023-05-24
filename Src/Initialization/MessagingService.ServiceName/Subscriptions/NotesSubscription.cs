@@ -10,12 +10,12 @@ namespace MessagingService.ServiceName.Subscriptions;
 public class NotesSubscription : SubscriptionBase<NotesSubscription>, INotesSubscription
 {
     private readonly IDirectAsyncGateway<NoteInput> _directAsyncGateway;
-    private readonly INotesService _notesUseCases;
+    private readonly INotesUseCase _notesUseCases;
     private readonly IOptionsMonitor<BusinessSettings> _configuradorAppSettings;
 
     public NotesSubscription(IOptionsMonitor<BusinessSettings> configuradorAppSettings,
             IDirectAsyncGateway<NoteInput> directAsyncGateway,
-            INotesService notesUseCases)
+            INotesUseCase notesUseCases)
            : base()
     {
         _directAsyncGateway = directAsyncGateway;

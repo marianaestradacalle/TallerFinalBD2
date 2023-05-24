@@ -4,10 +4,10 @@ using Core.Enumerations;
 namespace CronJobService.ServiceName;
 public class CreatorNotesJob : ICreatorNotesJob
 {
-    private readonly INotesService _notesUseCases;
+    private readonly INotesUseCase _notesUseCases;
 
     public CreatorNotesJob(
-        INotesService notesUseCases)
+        INotesUseCase notesUseCases)
 
     {
         _notesUseCases = notesUseCases;

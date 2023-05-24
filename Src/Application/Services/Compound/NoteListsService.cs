@@ -12,17 +12,17 @@ using Microsoft.Extensions.Options;
 namespace Application.Services.Compound;
 public class NoteCleaningService : INoteCleaningService
 {
-    private readonly IGenericRepositoryService<NoteLists> _noteListRepository;
+    private readonly IGenericRepositoryAdapter<NoteLists> _noteListRepository;
     private readonly ILogger<NoteCleaningService> _logger;
     private readonly IMapper _mapper;
-    private readonly IGenericRepositoryService<Notes> _notesRepository;
+    private readonly IGenericRepositoryAdapter<Notes> _notesRepository;
     private readonly IUnitWork _unitWork;
     private readonly BusinessSettings _settings;
 
-    public NoteCleaningService(IGenericRepositoryService<NoteLists> notaListRepository,
+    public NoteCleaningService(IGenericRepositoryAdapter<NoteLists> notaListRepository,
         ILogger<NoteCleaningService> logger,
         IMapper mapper,
-        IGenericRepositoryService<Notes> notesRepository,
+        IGenericRepositoryAdapter<Notes> notesRepository,
         IUnitWork unitWork,
         IOptionsMonitor<BusinessSettings> settings)
     {

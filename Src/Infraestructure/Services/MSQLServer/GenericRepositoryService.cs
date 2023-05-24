@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Services.MSQLServer;
-public class GenericRepositoryService<TEntity> : IGenericRepositoryService<TEntity> where TEntity : class
+public class GenericRepositoryService<TEntity> : IGenericRepositoryAdapter<TEntity> where TEntity : class
 {
     private ContextSQLServer context;
     private DbSet<TEntity> dbSet;

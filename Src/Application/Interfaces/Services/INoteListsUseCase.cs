@@ -1,7 +1,7 @@
 ﻿using Application.DTOs.NotesLists;
 
 namespace Application.Interfaces.Services;
-public interface INoteListsService
+public interface INoteListsUseCase
 {
     public Task<NoteListOutput> CreateNoteList(NoteListInput data);
     public Task<IEnumerable<SimplifiedNoteListOutput>> GetNoteLists();

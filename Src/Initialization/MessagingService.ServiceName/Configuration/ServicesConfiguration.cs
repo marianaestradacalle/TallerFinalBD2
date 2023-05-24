@@ -23,9 +23,9 @@ public static class ServicesConfiguration
     public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<DbContext, ContextSQLServer>();
-        services.AddScoped<IGenericRepositoryService<Notes>, GenericRepositoryService<Notes>>();
+        services.AddScoped<IGenericRepositoryAdapter<Notes>, GenericRepositoryService<Notes>>();
         services.AddScoped<IUnitWork, UnitWork>();
-        services.AddScoped<INotesService, NotesService>();
+        services.AddScoped<INotesUseCase, NotesService>();
 
         services.AddAdaptersAzServiceBus();
         services.AddMvc();

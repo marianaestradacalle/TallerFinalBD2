@@ -8,12 +8,12 @@ namespace GrpcApiService.ServiceName.Services;
 public class NoteListsService : GrpcNoteListsService.NoteListsService.NoteListsServiceBase
 {
     private readonly ILogger<NoteListsService> _logger;
-    private readonly INoteListsService _listsUseCases;
+    private readonly INoteListsUseCase _listsUseCases;
     private readonly IMapper _mapper;
 
 
     public NoteListsService(ILogger<NoteListsService> logger,
-        INoteListsService listsUseCases,
+        INoteListsUseCase listsUseCases,
     IMapper mapper)
     {
         _logger = logger;

@@ -10,20 +10,20 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Application.Services.Simple;
-public class NoteListsService : INoteListsService
+public class NoteListsService : INoteListsUseCase
 {
-    private readonly IGenericRepositoryService<NoteLists> _noteListRepository;
+    private readonly IGenericRepositoryAdapter<NoteLists> _noteListRepository;
     private readonly ILogger<NoteListsService> _logger;
     private readonly IMapper _mapper;
-    private readonly IGenericRepositoryService<Notes> _notesRepository;
+    private readonly IGenericRepositoryAdapter<Notes> _notesRepository;
     private readonly IUnitWork _unitWork;
     private readonly BusinessSettings _settings;
 
-    public NoteListsService(IGenericRepositoryService<NoteLists> noteListRepository,
+    public NoteListsService(IGenericRepositoryAdapter<NoteLists> noteListRepository,
         ILogger<NoteListsService> logger,
         IMapper mapper,
-        INotesService notesUseCases,
-        IGenericRepositoryService<Notes> notesRepository,
+        INotesUseCase notesUseCases,
+        IGenericRepositoryAdapter<Notes> notesRepository,
         IUnitWork unitWork,
         IOptionsMonitor<BusinessSettings> settings)
     {
