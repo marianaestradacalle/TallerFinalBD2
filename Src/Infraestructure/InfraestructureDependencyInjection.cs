@@ -12,8 +12,8 @@ public static class InfraestructureDependencyInjection
 {
     public static IServiceCollection AddAdaptersAzServiceBus(this IServiceCollection services)
     {
-        services.AddScoped<INotificationServiceBusService, NotificationServiceBusService>();
-        services.AddScoped(typeof(IGenericServiceBusService<>),typeof(Services.AzServiceBus.GenericServiceBusService<>));
+        services.AddScoped<INotificationServiceEventAdapter, NotificationServiceBusService>();
+        services.AddScoped(typeof(IGenericServiceEventAdapter<>),typeof(Services.AzServiceBus.GenericServiceBusService<>));
         return services;
     }
 

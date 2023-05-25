@@ -1,0 +1,69 @@
+<Project>
+	<PropertyGroup Label="SDK Versions">
+		<NetStandardTargetVersion>netstandard2.0</NetStandardTargetVersion>
+		<NetCoreTargetVersion>net6.0</NetCoreTargetVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Package Versions">
+		<MicrosoftExtensionsLoggingAbstractions>7.0.0</MicrosoftExtensionsLoggingAbstractions>
+		<MicrosoftVisualStudioAzureContainersToolsTargets>1.18.1</MicrosoftVisualStudioAzureContainersToolsTargets>
+		<AutoMapper>12.0.1</AutoMapper>
+		<FluentValidationAspNetCore>11.3.0</FluentValidationAspNetCore>
+		<reactivecommonsnetcore>1.0.81688</reactivecommonsnetcore>
+		<MicrosoftEntityFrameworkCore>7.0.4</MicrosoftEntityFrameworkCore>
+		<MicrosoftEntityFrameworkCoreSqlServer>7.0.4</MicrosoftEntityFrameworkCoreSqlServer>
+		<MicrosoftExtensionsOptions>7.0.1</MicrosoftExtensionsOptions>
+		<CalzolariGrpcAspNetCoreValidation>6.2.0</CalzolariGrpcAspNetCoreValidation>
+		<GoogleProtobuf>3.22.1</GoogleProtobuf>
+		<GrpcAspNetCore>2.52.0</GrpcAspNetCore>
+		<GrpcAspNetCoreHealthChecks>2.52.0</GrpcAspNetCoreHealthChecks>
+		<GrpcAspNetCoreServer>2.52.0</GrpcAspNetCoreServer>
+		<MicrosoftAspNetCoreMvc>2.2.0</MicrosoftAspNetCoreMvc>
+		<MicrosoftExtensionsConfiguration>7.0.0</MicrosoftExtensionsConfiguration>
+		<MicrosoftExtensionsDependencyInjectionAbstractions>7.0.0</MicrosoftExtensionsDependencyInjectionAbstractions>
+		<Coravel>4.2.1</Coravel>
+		<Hangfire>1.8.1</Hangfire>
+		<HangfireAspNetCore>1.8.1</HangfireAspNetCore>
+		<HangfireSqlServer>1.8.1</HangfireSqlServer>
+		<AzureExtensionsAspNetCoreConfigurationSecrets>1.2.2</AzureExtensionsAspNetCoreConfigurationSecrets>
+		<AzureIdentity>1.8.2</AzureIdentity>
+		<AutoMapperData>7.0.2</AutoMapperData>
+		<MicrosoftIdentityModelClientsActiveDirectory>5.3.0</MicrosoftIdentityModelClientsActiveDirectory>
+		<AutoMapperExtensionsMicrosoftDependencyInjection>12.0.0</AutoMapperExtensionsMicrosoftDependencyInjection>
+		<Serilog>2.12.0</Serilog>
+		<SerilogAspNetCore>6.1.0</SerilogAspNetCore>
+		<SerilogEnrichersSpan>3.1.0</SerilogEnrichersSpan>
+		<SerilogExtensionsHosting>5.0.1</SerilogExtensionsHosting>
+		<SerilogSinksConsole>4.1.0</SerilogSinksConsole>
+		<SerilogSinksElasticsearch>9.0.0</SerilogSinksElasticsearch>
+		<MicrosoftExtensionsConfigurationAzureKeyVault>3.1.24</MicrosoftExtensionsConfigurationAzureKeyVault>
+		<AspNetCoreHealthChecksMongoDb>6.0.2</AspNetCoreHealthChecksMongoDb>
+		<MicrosoftExtensionsPlatformAbstractions>1.1.0</MicrosoftExtensionsPlatformAbstractions>
+		<SwashbuckleAspNetCore>6.5.0</SwashbuckleAspNetCore>
+		<AspNetCoreHealthChecksRedis>6.0.4</AspNetCoreHealthChecksRedis>
+		<AzureSecurityKeyVaultSecrets>4.5.0</AzureSecurityKeyVaultSecrets>
+		<SCConfigurationProviderMongo>1.0.40329</SCConfigurationProviderMongo>
+		<MicrosoftAspNetCoreMvcNewtonsoftJson>6.0.15</MicrosoftAspNetCoreMvcNewtonsoftJson>
+		<NewtonsoftJson>13.0.3</NewtonsoftJson>
+		<GrpcCoreApi>2.52.0</GrpcCoreApi>
+		<GoogleProtobuf>3.22.1</GoogleProtobuf>
+		<GrpcAspNetCore>2.52.0</GrpcAspNetCore>
+		<GrpcAspNetCoreHealthChecks>2.52.0</GrpcAspNetCoreHealthChecks>
+		<GrpcAspNetCoreServer>2.52.0</GrpcAspNetCoreServer>
+		<MicrosoftEntityFrameworkCoreSqlServer>7.0.4</MicrosoftEntityFrameworkCoreSqlServer>
+		<MicrosoftEntityFrameworkCore>7.0.4</MicrosoftEntityFrameworkCore>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Test Package Versions">
+		<MicrosoftNETTestSdk>16.11.0</MicrosoftNETTestSdk>
+		<xunit>2.4.1</xunit>
+		<xunitRunnerVisualStudio>2.4.3</xunitRunnerVisualStudio>
+		<coverletCollector>3.1.0</coverletCollector>
+		<Moq>4.18.4</Moq>
+	</PropertyGroup>
+
+	<PropertyGroup Label="CLI Tools Versions">
+		<DotnetXUnitPackageVersion>2.3.1</DotnetXUnitPackageVersion>
+	</PropertyGroup>
+
+</Project>

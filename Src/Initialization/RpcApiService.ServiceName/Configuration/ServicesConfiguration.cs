@@ -38,8 +38,8 @@ public static class ServicesConfiguration
     {
         #region Adaptadores
         services.AddScoped<DbContext, ContextSQLServer>();
-        services.AddScoped<IGenericRepositoryService<Notes>, GenericRepositoryService<Notes>>();
-        services.AddScoped<IGenericRepositoryService<NoteLists>, GenericRepositoryService<NoteLists>>();
+        services.AddScoped<IGenericRepositoryAdapter<Notes>, GenericRepositoryService<Notes>>();
+        services.AddScoped<IGenericRepositoryAdapter<NoteLists>, GenericRepositoryService<NoteLists>>();
         services.AddScoped<IUnitWork, UnitWork>();
 
         services.AddAsyncGateway<dynamic>(servicesBusConnection);

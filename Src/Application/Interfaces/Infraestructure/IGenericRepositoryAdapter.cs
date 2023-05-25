@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 
 namespace Application.Interfaces.Infraestructure;
-public interface IGenericRepositoryService<TEntity> : IDisposable where TEntity : class
+public interface IGenericRepositoryAdapter<TEntity> : IDisposable where TEntity : class
 {
     Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", bool track = false);
     IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", bool track = false);

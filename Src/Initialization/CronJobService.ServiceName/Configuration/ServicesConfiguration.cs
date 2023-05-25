@@ -20,7 +20,7 @@ public static class ServicesConfiguration
     {
         #region Adapters
         services.AddScoped<DbContext, ContextSQLServer>();
-        services.AddScoped<IGenericRepositoryService<Notes>, GenericRepositoryService<Notes>>();
+        services.AddScoped<IGenericRepositoryAdapter<Notes>, GenericRepositoryService<Notes>>();
         services.AddScoped<IUnitWork, UnitWork>();
         services.AddAsyncGateway<dynamic>(serviceBusConn);
         services.AddAdaptersAzServiceBus();
@@ -33,11 +33,11 @@ public static class ServicesConfiguration
         #endregion
 
         #region UseCase
-        services.AddTransient<INotesService>(provider => new NotesService(
-            services.BuildServiceProvider().GetService<IGenericRepositoryService<Notes>>(),
+        services.AddTransient<INotesUseCase>(provider => new NotesService(
+            services.BuildServiceProvider().GetService<IGenericRepositoryAdapter<Notes>>(),
             services.BuildServiceProvider().GetService<ILogger<NotesService>>(),
             services.BuildServiceProvider().GetService<IMapper>(),
-            services.BuildServiceProvider().GetService<INotificationServiceBusService>(),
+            services.BuildServiceProvider().GetService<INotificationServiceEventAdapter>(),
             services.BuildServiceProvider().GetService<IOptionsMonitor<BusinessSettings>>(),
             services.BuildServiceProvider().GetService<IUnitWork>()));
         #endregion UseCase

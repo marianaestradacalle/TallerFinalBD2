@@ -4,7 +4,7 @@ using org.reactivecommons.api;
 using org.reactivecommons.api.domain;
 
 namespace Services.AzServiceBus;
-public class GenericServiceBusService<T> : IGenericServiceBusService<T> where T : class
+public class GenericServiceBusService<T> : IGenericServiceEventAdapter<T> where T : class
 {   
     private readonly IDirectAsyncGateway<T> _directAsyncGateway;
     private readonly ILogger<GenericServiceBusService<T>> _logger;

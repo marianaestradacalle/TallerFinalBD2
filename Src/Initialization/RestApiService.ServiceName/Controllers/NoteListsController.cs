@@ -8,8 +8,8 @@ namespace RestApi.Controllers;
 [Route("api/lists")]
 public class NoteListsController : ControllerBase
 {
-    INoteListsService _listsUseCases;
-    public NoteListsController(INoteListsService listsUseCases)
+    INoteListsUseCase _listsUseCases;
+    public NoteListsController(INoteListsUseCase listsUseCases)
     {
         _listsUseCases = listsUseCases;
     }

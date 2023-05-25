@@ -8,20 +8,20 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Application.Services.Simple;
-public class ClearAllService : IClearAllService
+public class ClearAllService : IClearAllUseCase
 {
-    private readonly IGenericRepositoryService<NoteLists> _notaListRepository;
+    private readonly IGenericRepositoryAdapter<NoteLists> _notaListRepository;
     private readonly ILogger<ClearAllService> _logger;
     private readonly IMapper _mapper;
-    private readonly IGenericRepositoryService<Notes> _notesRepository;
+    private readonly IGenericRepositoryAdapter<Notes> _notesRepository;
     private readonly IUnitWork _unitWork;
     private readonly BusinessSettings _settings;
 
-    public ClearAllService(IGenericRepositoryService<NoteLists> notaListRepository,
+    public ClearAllService(IGenericRepositoryAdapter<NoteLists> notaListRepository,
         ILogger<ClearAllService> logger,
         IMapper mapper,
-        INotesService notesUseCases,
-        IGenericRepositoryService<Notes> notesRepository,
+        INotesUseCase notesUseCases,
+        IGenericRepositoryAdapter<Notes> notesRepository,
         IUnitWork unitWork,
         IOptionsMonitor<BusinessSettings> settings)
     {

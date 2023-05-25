@@ -8,8 +8,8 @@ namespace RestApi.Controllers;
 public class SettingsController : ControllerBase
 {
     INoteCleaningService _noteCleaningService;
-    IClearAllService _clearAllUseCase;
-    public SettingsController(INoteCleaningService noteCleaningService, IClearAllService clearAllUseCase)
+    IClearAllUseCase _clearAllUseCase;
+    public SettingsController(INoteCleaningService noteCleaningService, IClearAllUseCase clearAllUseCase)
     {
         _noteCleaningService = noteCleaningService;
         _clearAllUseCase = clearAllUseCase;

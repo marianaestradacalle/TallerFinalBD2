@@ -1,10 +1,10 @@
 ﻿using Application.Interfaces.Infraestructure;
 
 namespace Services.AzServiceBus;
-public class NotificationServiceBusService : INotificationServiceBusService
+public class NotificationServiceBusService : INotificationServiceEventAdapter
 {
-    private readonly IGenericServiceBusService<object> _genericEventAdapter;
-    public NotificationServiceBusService(IGenericServiceBusService<object> genericEventAdapter)
+    private readonly IGenericServiceEventAdapter<object> _genericEventAdapter;
+    public NotificationServiceBusService(IGenericServiceEventAdapter<object> genericEventAdapter)
     {
         _genericEventAdapter = genericEventAdapter;
     }

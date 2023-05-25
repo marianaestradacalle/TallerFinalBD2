@@ -1,5 +1,5 @@
 ﻿namespace Application.Interfaces.Infraestructure;
-public interface INotificationServiceBusService
+public interface INotificationServiceEventAdapter
 {
     Task GetNotificationSms();
 }
