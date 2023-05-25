@@ -45,6 +45,13 @@
 		<SCConfigurationProviderMongo>1.0.40329</SCConfigurationProviderMongo>
 		<MicrosoftAspNetCoreMvcNewtonsoftJson>6.0.15</MicrosoftAspNetCoreMvcNewtonsoftJson>
 		<NewtonsoftJson>13.0.3</NewtonsoftJson>
+		<GrpcCoreApi>2.52.0</GrpcCoreApi>
+		<GoogleProtobuf>3.22.1</GoogleProtobuf>
+		<GrpcAspNetCore>2.52.0</GrpcAspNetCore>
+		<GrpcAspNetCoreHealthChecks>2.52.0</GrpcAspNetCoreHealthChecks>
+		<GrpcAspNetCoreServer>2.52.0</GrpcAspNetCoreServer>
+		<MicrosoftEntityFrameworkCoreSqlServer>7.0.4</MicrosoftEntityFrameworkCoreSqlServer>
+		<MicrosoftEntityFrameworkCore>7.0.4</MicrosoftEntityFrameworkCore>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Test Package Versions">
