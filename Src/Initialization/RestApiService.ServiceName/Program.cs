@@ -20,7 +20,7 @@ builder.Host.ConfigureAppConfiguration((context, config) =>
         .AddJsonFile("Config/appsettings.json", optional: true, reloadOnChange: true)
         .AddEnvironmentVariables()
         .Build();
-    AddkeyValult(config, configurationRoot);
+    AddkeyValult(config, configurationRoot, environment);
     AddMongoprovider(config, configurationRoot);
 
 }).UseSerilog((hostBuilder, loggerConfiguration) =>
@@ -71,11 +71,19 @@ app.MapControllers();
 app.Run();
 
 #region ConfigurationKeyVault
-void AddkeyValult(IConfigurationBuilder config, IConfigurationRoot configurationRoot)
+void AddkeyValult(IConfigurationBuilder config, IConfigurationRoot configurationRoot, IWebHostEnvironment environment)
 {
-    ClientSecretCredential clientSecretCredential = new ClientSecretCredential(builder.Configuration["AzureKeyVaultConfig:TenantId"], builder.Configuration["AzureKeyVaultConfig:AppId"], builder.Configuration["AzureKeyVaultConfig:AppSecret"]);
-    SecretClient client = new SecretClient(new Uri(builder.Configuration["AzureKeyVaultConfig:KeyVault"]), clientSecretCredential);
-    config.AddAzureKeyVault(client, new AzureKeyVaultConfigurationOptions());
+    if (environment.EnvironmentName.Equals("Local"))
+    {
+        ClientSecretCredential clientSecretCredential = new ClientSecretCredential(builder.Configuration["AzureKeyVaultConfig:TenantId"], builder.Configuration["AzureKeyVaultConfig:AppId"], builder.Configuration["AzureKeyVaultConfig:AppSecret"]);
+        SecretClient client = new SecretClient(new Uri(builder.Configuration["AzureKeyVaultConfig:KeyVault"]), clientSecretCredential);
+        config.AddAzureKeyVault(client, new AzureKeyVaultConfigurationOptions());
+    }
+    else
+    {
+        config.AddAzureKeyVault(new Uri(configurationRoot["AzureKeyVaultConfig:KeyVault"]), new DefaultAzureCredential());
+    }
+   
 }
 #endregion ConfigurationKeyVault
 
