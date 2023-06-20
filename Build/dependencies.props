@@ -55,11 +55,13 @@
 	</PropertyGroup>
 
 	<PropertyGroup Label="Test Package Versions">
-		<MicrosoftNETTestSdk>16.11.0</MicrosoftNETTestSdk>
+		<MicrosoftNETTestSdk>17.3.1</MicrosoftNETTestSdk>
 		<xunit>2.4.1</xunit>
 		<xunitRunnerVisualStudio>2.4.3</xunitRunnerVisualStudio>
 		<coverletCollector>3.1.0</coverletCollector>
 		<Moq>4.18.4</Moq>
+		<OpenCover>4.7.1221</OpenCover>
+		<coverletBuild>2.9.0</coverletBuild>
 	</PropertyGroup>
 
 	<PropertyGroup Label="CLI Tools Versions">
