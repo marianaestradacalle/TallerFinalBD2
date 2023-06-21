@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Azure.Identity;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using SC.Configuration.Provider.Mongo;
 
@@ -10,9 +10,19 @@ public static class ConfigurationExtensions
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{environment.ApplicationName}.json", optional: true, reloadOnChange: true);
 
-    public static IConfigurationBuilder AddKeyVaultProvider(this ConfigurationManager configuration)
+    public static IConfigurationBuilder AddKeyVaultProvider(this ConfigurationManager configuration, IWebHostEnvironment environment)
     {
-        configuration.AddAzureKeyVault(new AzureKeyVaultConfigurationOptions(configuration["AzureKeyVaultConfig:KeyVault"], configuration["AzureKeyVaultConfig:AppId"], configuration["AzureKeyVaultConfig:AppSecret"]));
+        if (environment.EnvironmentName.Equals("Local"))
+        {            
+            configuration.AddAzureKeyVault(new AzureKeyVaultConfigurationOptions(configuration["AzureKeyVaultConfig:KeyVault"], 
+                configuration["AzureKeyVaultConfig:AppId"], 
+                configuration["AzureKeyVaultConfig:AppSecret"]));
+        }
+        else
+        {
+            configuration.AddAzureKeyVault(new Uri(configuration["AzureKeyVaultConfig:KeyVault"]), new DefaultAzureCredential());
+        }
+        
         return configuration;
     }
 
