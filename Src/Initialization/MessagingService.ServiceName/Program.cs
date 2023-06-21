@@ -12,7 +12,7 @@ builder.Configuration
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonProvider(environment);
 
-builder.Configuration.AddKeyVaultProvider();
+builder.Configuration.AddKeyVaultProvider(environment);
 
 builder.Host.UseSerilog((ctx, lc) => lc
        .WriteTo.Console()
