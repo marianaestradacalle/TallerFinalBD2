@@ -18,7 +18,7 @@ IConfiguration configuration = builder.Configuration;
 builder.Host.ConfigureAppConfiguration((context, config) =>
 {
     IConfigurationRoot configurationRoot = (IConfigurationRoot)config
-        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+        .AddJsonFile("Config/appsettings.json", optional: true, reloadOnChange: true)
         .AddJsonFile($"appsettings.{environment.ApplicationName}.json", optional: true, reloadOnChange: true)
         .AddEnvironmentVariables()
         .Build();

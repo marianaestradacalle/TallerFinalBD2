@@ -1,0 +1,5 @@
+Serilog.Enrich.0
+Serilog.Enrich.1
+Serilog.Enrich.2
+Serilog.Enrich.3
+Serilog.Enrich.4
