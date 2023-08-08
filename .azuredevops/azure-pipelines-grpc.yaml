@@ -42,6 +42,9 @@ stages:
       grupoRecursosDelCluster: rg-co-nop-ingenieria
       nombreDelCluster: aks-co-nop-ingenieria
       agenteSiste: pool-sc-co-nop-ubuntu2204
+      usaIdentity: true
+      nombreDeIdentity: uai-co-nop-ingenieria
+      grupoDeRecursosIdentity: rg-co-nop-ingenieria
 
 variables: 
   - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/integracion') }}:
