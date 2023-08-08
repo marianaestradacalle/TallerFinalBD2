@@ -12,7 +12,7 @@ public static class ConfigurationExtensions
 
     public static IConfigurationBuilder AddKeyVaultProvider(this ConfigurationManager configuration, IWebHostEnvironment environment)
     {
-        if (environment.EnvironmentName.Equals("Local"))
+        if ((configuration["AppSettings:Environment"]) == "Local")
         {            
             configuration.AddAzureKeyVault(new AzureKeyVaultConfigurationOptions(configuration["AzureKeyVaultConfig:KeyVault"], 
                 configuration["AzureKeyVaultConfig:AppId"], 
