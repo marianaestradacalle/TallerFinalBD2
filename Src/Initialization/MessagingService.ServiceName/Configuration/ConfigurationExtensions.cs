@@ -7,7 +7,7 @@ public static class ConfigurationExtensions
 {
     public static IConfigurationBuilder AddJsonProvider(this IConfigurationBuilder configuration, IWebHostEnvironment environment)
             => configuration
-                .AddJsonFile("Config/appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("config/appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{environment.ApplicationName}.json", optional: true, reloadOnChange: true);
 
     public static IConfigurationBuilder AddKeyVaultProvider(this ConfigurationManager configuration, IWebHostEnvironment environment)
