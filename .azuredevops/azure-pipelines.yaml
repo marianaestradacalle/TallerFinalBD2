@@ -1,35 +1,50 @@
-resources:
-  repositories:
-    - repository: templates
-      type: git
-      name: DevOps/code-pipeline-templates
-      ref: 'develop'
+trigger:
+  branches:
+    include:
+      - master
+      - integracion
+  paths:
+    exclude:
+      - .azuredevops/**
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
+name: $(BuildId)_$(date:yyyy-MM-dd)
 
+resources:
+  repositories:
+  - repository: templates
+    type: git
+    name: DevOps/pipelines-templates
+    ref: integracion
+    
 stages:
-- stage: CodeCheck
-  displayName: Code Check
+  - template: netcore/stages/stage-createartifact.yaml@templates
+    parameters:
+      nombreDelStage: build
+      conexionSonar: sc_sonarcloud_codecheck-PlantillasContenedoresC4
+      nombreDelArchivoSln: msv-clean.sln
+      nombreDeLaSolucion: RestApiService.ServiceName
 
-  jobs:
+  - template: netcore/stages/stage-deploytok8s.yaml@templates
+    parameters:
+      nombreDelStage: deploy
+      dependeDe: build
+      condicion:  and(succeeded(), startsWith(variables['build.sourceBranch'], 'refs/heads/integracion' ))
+      producto: plantillas
+      solucion: Sistecredito
+      nombreDelServicio: ing-dnc-bms-clean
+      tipoDeServicio: Ingress
+      rutaDelServicio: /ing-dnc-bms-clean/(/|$)(.*)
+      nombreDeDominio: api-ingenieria.nop.cloudsistecredito.com
+      conexionContainerRegistry: acr-co-nop-sistecredito-PlantillasContenedoresC4
+      urlDelContainerRegistry: acrconopsistecredito.azurecr.io
+      conexionAzure: azr-co-nop-sistecredito-PlantillasContenedoresC4
+      nombreDeLaSolucion: RestApiService.ServiceName
+      grupoRecursosDelCluster: rg-co-nop-ingenieria
+      nombreDelCluster: aks-co-nop-ingenieria
+      agenteSiste: pool-sc-co-nop-ubuntu2204
 
-    - template: NetCore/codecheck/dnc-codecheck-v2.yml@templates
-      parameters: 
-        ChangeDotNetVersion: true
-        CreateSonarProject: true
-        ConfigSonarProject: true
-        RunCoverageTests: true
-        CoverageTestsResults: true
-        RunSonarAnalysis: true
-        PublishSonarResults: true
-        PublishCoverageResults: true
-        PublishTestsResults: true
-        ValidateSonarQualityGate: true
-         
-        DotnetVersion: 6.0.x
-        DotnetSonarVersion: 6.0.x
-        producto: plantilla
-        equipo: ingenieria
-
-        sonarCoverageExclude: ''
+variables: 
+  - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/integracion') }}:
+      - group: ing-dnc-bms-clean-nop
