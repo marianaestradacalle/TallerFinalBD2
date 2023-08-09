@@ -35,7 +35,7 @@ stages:
       solucion: Sistecredito
       nombreDelServicio: ing-dnc-bms-clean
       tipoDeServicio: Ingress
-      rutaDelServicio: /ing-dnc-bms-clean/(/|$)(.*)
+      rutaDelServicio: /ing-dnc-bms-clean(/|$)(.*)
       nombreDeDominio: api-ingenieria.nop.cloudsistecredito.com
       conexionContainerRegistry: acr-co-nop-sistecredito-PlantillasContenedoresC4
       urlDelContainerRegistry: acrconopsistecredito.azurecr.io
