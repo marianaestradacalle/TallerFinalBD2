@@ -34,7 +34,7 @@ stages:
       producto: plantillas
       solucion: Sistecredito
       nombreDelServicio: ing-dnc-bms-clean-grpc
-      puertoGrpc: 50051
+      puertoGrpc: 5092
       conexionContainerRegistry: acr-co-nop-sistecredito-PlantillasContenedoresC4
       urlDelContainerRegistry: acrconopsistecredito.azurecr.io
       conexionAzure: azr-co-nop-sistecredito-PlantillasContenedoresC4
