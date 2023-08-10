@@ -1,0 +1,53 @@
+trigger:
+  branches:
+    include:
+      - master
+      - integracion
+  paths:
+    exclude:
+      - .azuredevops/**
+
+pool:
+  vmImage: 'ubuntu-latest'
+name: $(BuildId)_$(date:yyyy-MM-dd)
+
+resources:
+  repositories:
+  - repository: templates
+    type: git
+    name: DevOps/pipelines-templates
+    ref: integracion
+    
+stages:
+  - template: netcore/stages/stage-createartifact.yaml@templates
+    parameters:
+      nombreDelStage: build
+      conexionSonar: sc_sonarcloud_codecheck-PlantillasContenedoresC4
+      nombreDelArchivoSln: msv-clean.sln
+      nombreDeLaSolucion: MessagingService.ServiceName
+
+  - template: netcore/stages/stage-deploytok8s.yaml@templates
+    parameters:
+      nombreDelStage: deploy
+      dependeDe: build
+      condicion:  and(succeeded(), startsWith(variables['build.sourceBranch'], 'refs/heads/integracion' ))
+      producto: plantillas
+      solucion: Sistecredito
+      nombreDelServicio: ing-dnc-bms-clean-messaging
+      tipoDeServicio: Ingress
+      rutaDelServicio: /ing-dnc-bms-clean-messaging(/|$)(.*)
+      nombreDeDominio: api-ingenieria.nop.cloudsistecredito.com
+      conexionContainerRegistry: acr-co-nop-sistecredito-PlantillasContenedoresC4
+      urlDelContainerRegistry: acrconopsistecredito.azurecr.io
+      conexionAzure: azr-co-nop-sistecredito-PlantillasContenedoresC4
+      nombreDeLaSolucion: MessagingService.ServiceName
+      grupoRecursosDelCluster: rg-co-nop-ingenieria
+      nombreDelCluster: aks-co-nop-ingenieria
+      agenteSiste: pool-sc-co-nop-ubuntu2204
+      usaIdentity: true
+      nombreDeIdentity: uai-co-nop-ingenieria
+      grupoDeRecursosIdentity: rg-co-nop-ingenieria
+
+variables: 
+  - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/integracion') }}:
+      - group: ing-dnc-bms-clean-messaging-nop
