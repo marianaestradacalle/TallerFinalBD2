@@ -25,6 +25,7 @@ stages:
       conexionSonar: sc_sonarcloud_codecheck-PlantillasContenedoresC4
       nombreDelArchivoSln: msv-clean.sln
       nombreDeLaSolucion: GrpcApiService.ServiceName
+      excluirDeSonar: "**/Src/Infraestructure/**"
 
   - template: netcore/stages/stage-deploytok8s.yaml@templates
     parameters:
