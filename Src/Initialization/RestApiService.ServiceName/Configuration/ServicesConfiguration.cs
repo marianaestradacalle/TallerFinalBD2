@@ -3,14 +3,17 @@ using Application.Common.Utilities;
 using Application.DTOs;
 using Application.Interfaces.Infraestructure;
 using Core.Entities;
-using FluentValidation.AspNetCore;
+using FluentValidation;
 using Infraestructure;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using RestApi.Filters;
 using RestApi.Health;
+using RestApi.Validations;
+using RestApiService.ServiceName.Validations;
 using Services.MSQLServer;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 using System.Net.Mime;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -63,11 +66,21 @@ public static class ServicesConfiguration
     {
         services.AddMvc(options =>
         {
-            options.Filters.Add<ModelExceptionFilter>();
             options.Filters.Add<ExceptionFilter>();
-        })
-        .AddFluentValidation(options => options.AutomaticValidationEnabled = false);
+        });
 
+        return services;
+    }
+
+    public static IServiceCollection AddValidators(this IServiceCollection services)
+    {
+        services.AddValidatorsFromAssemblyContaining<NoteListInputValidation>();
+        services.AddFluentValidationAutoValidation(configuration =>
+        {
+            configuration.DisableBuiltInModelValidation = false;
+
+            configuration.OverrideDefaultResultFactoryWith<CustomResultFactory>();
+        });
         return services;
     }
 

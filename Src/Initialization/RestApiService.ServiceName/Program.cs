@@ -1,11 +1,15 @@
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using FluentValidation;
 using Infraestructure;
 using RestApi.Middlewares;
+using RestApi.Validations;
 using RestApiService.ServiceName.Configuration;
+using RestApiService.ServiceName.Validations;
 using SC.Configuration.Provider.Mongo;
 using Serilog;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 
 // Configuraciones servicios
@@ -33,10 +37,9 @@ builder.Host.ConfigureAppConfiguration((context, config) =>
 
 #endregion ProgramConfiguration
 
-builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
-{
-    options.SuppressModelStateInvalidFilter = true;
-});
+builder.Services.AddControllers();
+builder.Services.UseRestApiFilters();
+builder.Services.AddValidators();
 string ServiceBusConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:ServiceBusConnection").Value);
 builder.Configuration.AddJsonProvider();
 builder.Services.AddEndpointsApiExplorer();
@@ -50,9 +53,6 @@ builder.Host.UseSerilog((hostContext, services, configuration) =>
 {
     configuration.WriteTo.Console();
 });
-
-builder.Services.UseRestApiFilters();
-
 
 // Configuraciones de aplicación
 var app = builder.Build();
