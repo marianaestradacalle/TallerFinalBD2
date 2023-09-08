@@ -1,13 +1,13 @@
 ﻿namespace RestApi.Health;
 public class HealthInfo
 {
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
-    public string Description { get; set; }
+    public string Description { get; set; } = string.Empty;
 
     public TimeSpan Duration { get; set; }
 
-    public string Status { get; set; }
+    public string Status { get; set; } = string.Empty;
 
-    public string Error { get; set; }
+    public string Error { get; set; } = string.Empty;
 }

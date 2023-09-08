@@ -1,8 +1,8 @@
 ﻿namespace Application.Common.Utilities;
 public class ServiceException
 {
-    public string Id { get; set; }
-    public string Code { get; set; }
-    public string Message { get; set; }
-    public string Description { get; set; }
+    public string Id { get; set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
+    public string Message { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 }

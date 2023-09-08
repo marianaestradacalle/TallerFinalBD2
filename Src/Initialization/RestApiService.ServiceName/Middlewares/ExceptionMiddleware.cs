@@ -23,8 +23,11 @@ public static class ExceptionMiddleware
                     logger.LogError($"{errorMessage}. {message} {context.Request.Path}", contextFeature);
                     var details = new
                     {
-                        Error = "Exception Handled",
-                        Title = "An error occurred while processing your request."
+                        Function = context.Request.Path.Value,
+                        ErrorCode = contextFeature.Error,
+                        Message = $"{errorMessage}. {message}",
+                        Country = "co",
+                        Data = ""
                     };
                     await context.Response.WriteAsync(JsonConvert.SerializeObject(details));
                 }

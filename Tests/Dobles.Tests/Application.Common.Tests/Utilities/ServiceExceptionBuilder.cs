@@ -1,15 +1,12 @@
 ﻿using Application.Common.Utilities;
 
-namespace Common.Tests.Utilities.Builders;
+namespace Dobles.Tests.Application.Common.Tests.Utilities;
 public class ServiceExceptionBuilder
 {
     private string _id = "DefaultException";
     private string _code = "409.500";
     private string _message = "Error desconocido.";
     private string _description = "Este error se genera cuando no existe la propiedad en el archivo de configuración del servicio (appsettings) que contiene el listado de códigos de error.";
-
-    public ServiceExceptionBuilder()
-    { }
 
     public ServiceExceptionBuilder WithId(string id)
     {

@@ -1,6 +1,6 @@
 ﻿namespace Application.Interfaces.Services;
 public interface INoteCleaningService
 {
-    public Task DeleteAllChecked();
-    public Task InitializationWithList();
+    public Task<bool> DeleteAllChecked();
+    public Task<bool> InitializationWithList();
 }

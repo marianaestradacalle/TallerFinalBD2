@@ -3,7 +3,7 @@
     "MessagingService.ServiceName": {
       "commandName": "Project",
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development"
+        "DOTNET_ENVIRONMENT": "Local"
       },
       "dotnetRunMessages": true
     },

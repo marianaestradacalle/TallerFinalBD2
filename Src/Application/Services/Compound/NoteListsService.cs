@@ -34,13 +34,13 @@ public class NoteCleaningService : INoteCleaningService
         _settings = settings.CurrentValue;
     }
 
-    public async Task DeleteAllChecked()
+    public async Task<bool> DeleteAllChecked()
     {
         IEnumerable<Notes> notesResponse = (IEnumerable<Notes>)await _notesRepository.GetAllAsync(x => x.State == NoteStates.CHECKED)
-                    ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+                    ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
 
         IEnumerable<NoteLists> notesListResponse = (IEnumerable<NoteLists>)await _noteListRepository.GetAllAsync(x => x.State == NoteStates.CHECKED)
-            ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
         foreach (var item in notesResponse)
         {
             _notesRepository.Delete(item.Id);
@@ -50,12 +50,14 @@ public class NoteCleaningService : INoteCleaningService
             _noteListRepository.Delete(item.Id);
         }
         await _unitWork.SaveAsync();
+        return true;
     }
-    public async Task InitializationWithList()
+    public async Task<bool> InitializationWithList()
     {
         NoteListInput data = new();
         data.Name = "ListInitial";
         await _noteListRepository.AddAsync(_mapper.Map<NoteListInput, NoteLists>(data));
         await _unitWork.SaveAsync();
+        return true;
     }
 }

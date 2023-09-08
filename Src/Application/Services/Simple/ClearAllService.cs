@@ -33,13 +33,13 @@ public class ClearAllService : IClearAllUseCase
         _settings = settings.CurrentValue;
     }
 
-    public async Task Apply()
+    public async Task<bool> Apply()
     {
         IEnumerable<Notes> notesResponse = (IEnumerable<Notes>)await _notesRepository.GetAllAsync()
-                        ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+                        ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
 
         IEnumerable<NoteLists> notesListResponse = (IEnumerable<NoteLists>)await _notaListRepository.GetAllAsync()
-                    ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+                    ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
         foreach (var item in notesResponse)
         {
             _notesRepository.Delete(item.Id);
@@ -49,5 +49,6 @@ public class ClearAllService : IClearAllUseCase
             _notaListRepository.Delete(item.Id);
         }
         await _unitWork.SaveAsync();
+        return true;
     }
 }

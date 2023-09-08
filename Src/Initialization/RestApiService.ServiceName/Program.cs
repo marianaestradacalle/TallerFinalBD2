@@ -44,9 +44,6 @@ string ServiceBusConnectionSecret = builder.Configuration.GetValue<string>(build
 builder.Configuration.AddJsonProvider();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.RegisterAutoMapper();
-builder.Services.AddConfigureDatabaseSQL(configuration);
-builder.Services.RegisterAutoMapper();
 builder.Services.RegisterServices(configuration, ServiceBusConnectionSecret);
 builder.Services.AddHealthChecks();
 builder.Host.UseSerilog((hostContext, services, configuration) =>
@@ -59,9 +56,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    
 }
+app.UseSwagger();
+app.UseSwaggerUI();
 
 ILogger<Program> logger = app.Services.GetRequiredService<ILogger<Program>>();
 app.ConfigureExceptionHandler(logger);

@@ -10,7 +10,6 @@
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtensionsMicrosoftDependencyInjection)" />
 		<PackageReference Include="Grpc.Core.Api" Version="$(GrpcCoreApi)" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="$(MicrosoftVisualStudioAzureContainersToolsTargets)" />
-		<PackageReference Include="reactive-commons-netcore" Version="$(reactivecommonsnetcore)" />
 		<PackageReference Include="AspNetCore.HealthChecks.MongoDb" Version="$(AspNetCoreHealthChecksMongoDb)" />
 		<PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="$(AzureExtensionsAspNetCoreConfigurationSecrets)" />
 		<PackageReference Include="Azure.Identity" Version="$(AzureIdentity)" />
@@ -26,7 +25,6 @@
 		<PackageReference Include="Serilog.Sinks.Console" Version="$(SerilogSinksConsole)" />
 		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="$(SerilogSinksElasticsearch)" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCore)" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="$(MicrosoftExtensionsConfigurationAzureKeyVault)" />
 		<PackageReference Include="SC.Configuration.Provider.Mongo" Version="$(SCConfigurationProviderMongo)" />
 		<PackageReference Include="Calzolari.Grpc.AspNetCore.Validation" Version="$(CalzolariGrpcAspNetCoreValidation)" />
 		<PackageReference Include="Google.Protobuf" Version="$(GoogleProtobuf)" />

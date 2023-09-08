@@ -8,6 +8,7 @@ using Core.Entities;
 using Core.Enumerations;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Net.Http.Headers;
 
 namespace Application.Services.Simple;
 public class NotesService : INotesUseCase
@@ -41,26 +42,27 @@ public class NotesService : INotesUseCase
         await _unitWork.SaveAsync();
         return _mapper.Map<Notes, NoteOutput>(notes);
     }
-    public async Task DeleteNote(string noteId)
+    public async Task<bool> DeleteNote(string noteId)
     {
         await checkIfNoteExist(noteId);
         _notesRepository.Delete(noteId);
-        await _unitWork.SaveAsync();
+        return true;
+
     }
     public async Task<IEnumerable<SimplifiedNoteOutput>> GetNotes()
     {
         IEnumerable<Notes> simplifiedNoteResponse = await _notesRepository.GetAllAsync()
-                            ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+                            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
         return _mapper.Map<IEnumerable<Notes>, IEnumerable<SimplifiedNoteOutput>>(simplifiedNoteResponse);
     }
     public async Task<NoteOutput> GetNote(string noteId)
     {
         await checkIfNoteExist(noteId);
         var noteResponse = await _notesRepository.FindByIdAsync(noteId)
-                        ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+                        ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First()); ;
         return _mapper.Map<Notes, NoteOutput>(noteResponse);
     }
-    public async Task DeleteCheckedIsolateNotes()
+    public async Task<bool> DeleteCheckedIsolateNotes()
     {
         IEnumerable<Notes> notesResponse = (IEnumerable<Notes>)await _notesRepository.GetAllAsync(x => x.State == NoteStates.CHECKED
             && x.ListId.Trim() == "");
@@ -69,16 +71,18 @@ public class NotesService : INotesUseCase
             _notesRepository.Delete(item.Id);
         }
         await _unitWork.SaveAsync();
+        return true;
     }
-    public async Task ChangeNoteState(string noteId, NoteStateInput data)
+    public async Task<bool> ChangeNoteState(string noteId, NoteStateInput data)
     {
         await checkIfNoteExist(noteId);
         Notes notesResponse = await _notesRepository.FindByIdAsync(noteId);
         notesResponse.State = data.State;
         _notesRepository.Update(notesResponse);
         await _unitWork.SaveAsync();
+        return true;
     }
-    public async Task UpdateNote(string noteId, ModifiedNoteInput data)
+    public async Task<bool> UpdateNote(string noteId, ModifiedNoteInput data)
     {
         await checkIfNoteExist(noteId);
         Notes notesResponse = await _notesRepository.FindByIdAsync(noteId);
@@ -88,6 +92,7 @@ public class NotesService : INotesUseCase
         notesResponse.UpdaterUser = "Test";
         _notesRepository.Update(notesResponse);
         await _unitWork.SaveAsync();
+        return true;
     }
     public void Notification()
     {
@@ -97,7 +102,7 @@ public class NotesService : INotesUseCase
     private async Task checkIfNoteExist(string id)
     {
         Notes result = await _notesRepository.FindByIdAsync(id)
-            ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
     }
     #endregion private
 }

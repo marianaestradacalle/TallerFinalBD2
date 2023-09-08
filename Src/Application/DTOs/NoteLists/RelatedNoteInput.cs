@@ -1,5 +1,5 @@
 ﻿namespace Application.DTOs.NotesLists;
 public class RelatedNoteInput
 {
-    public string NoteId { get; set; }
+    public string NoteId { get; set; } = string.Empty;
 }

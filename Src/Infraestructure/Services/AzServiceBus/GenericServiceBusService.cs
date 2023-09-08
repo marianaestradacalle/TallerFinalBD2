@@ -25,7 +25,7 @@ public class GenericServiceBusService<T> : IGenericServiceEventAdapter<T> where 
             await _directAsyncGateway.SendCommand(requestQueue, new Command<T>(name: eventName, commandId: id, data: data));
             _logger.LogInformation("Se finaliza envío comando a la cola {@requestQueue}, data: {@data}", requestQueue, data);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             throw;
         }

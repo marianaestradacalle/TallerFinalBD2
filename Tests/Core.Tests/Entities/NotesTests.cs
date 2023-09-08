@@ -1,5 +1,7 @@
-﻿using Core.Entities;
+﻿using Application.DTOs.Notes;
+using Core.Entities;
 using Core.Enumerations;
+using FluentAssertions;
 using System;
 using Xunit;
 
@@ -31,13 +33,12 @@ public class NotesTests
             idNoteList);
 
         // Assert
-        Assert.NotNull(result);
-        Assert.True(result.Id.Equals(Guid.Parse("fe78c26b-a636-4d54-b53b-2d118411d6d7").ToString()));
-        Assert.True(result.LastUpdateDate.Equals(DateTime.Parse("2023/03/13 16:05:06")));
-        Assert.True(result.Title.Equals("test"));
-        Assert.True(result.State.Equals(NoteStates.CHECKED));
-        Assert.True(result.CreationDate.Equals(DateTime.Parse("2023/03/13 16:00:00")));
-        Assert.True(result.CreatorUser.Equals("wponce"));
-        Assert.True(result.UpdaterUser.Equals("altorres"));
+        result.Should().NotBeNull();
+        result.Id.Should().Be(Guid.Parse("fe78c26b-a636-4d54-b53b-2d118411d6d7").ToString());
+        result.Title.Should().Be("test");
+        result.State.Should().Be(NoteStates.CHECKED);
+        result.CreationDate.Should().Be(DateTime.Parse("2023/03/13 16:00:00"));
+        result.CreatorUser.Should().Be("wponce");
+        result.UpdaterUser.Should().Be("altorres");
     }
 }

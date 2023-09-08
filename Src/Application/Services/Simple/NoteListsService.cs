@@ -45,7 +45,8 @@ public class NoteListsService : INoteListsUseCase
     public async Task<IEnumerable<SimplifiedNoteListOutput>> GetNoteLists()
     {
         IEnumerable<NoteLists> simplifiedNoteListResponse = await _noteListRepository.GetAllAsync()
-                                ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+                                ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == 
+                                BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
 
         return _mapper.Map<IEnumerable<NoteLists>, IEnumerable<SimplifiedNoteListOutput>>(simplifiedNoteListResponse);
     }
@@ -53,10 +54,11 @@ public class NoteListsService : INoteListsUseCase
     {
         await CheckIfNoteListExists(listId);
         var noteListResponse = await _noteListRepository.FindByIdAsync(listId)
-                            ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+                            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == 
+                            BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
         return _mapper.Map<NoteLists, NoteListOutput>(noteListResponse);
     }
-    public async Task DeleteNoteList(string listId)
+    public async Task<bool> DeleteNoteList(string listId)
     {
         await CheckIfNoteListExists(listId);
         IEnumerable<Notes> notesResponse = (IEnumerable<Notes>)await _notesRepository.GetAllAsync();
@@ -72,8 +74,9 @@ public class NoteListsService : INoteListsUseCase
 
         _noteListRepository.Delete(listId);
         await _unitWork.SaveAsync();
+        return true;
     }
-    public async Task DeleteCheckedNoteLists()
+    public async Task<bool> DeleteCheckedNoteLists()
     {
         IEnumerable<NoteLists> noteListsResponse = (IEnumerable<NoteLists>)await _noteListRepository.GetAllAsync(x => x.State == NoteStates.CHECKED);
         IEnumerable<Notes> notesResponse = (IEnumerable<Notes>)await _notesRepository.GetAllAsync(x => x.State == NoteStates.CHECKED);
@@ -95,16 +98,18 @@ public class NoteListsService : INoteListsUseCase
             _notesRepository.Update(item);
         }
         await _unitWork.SaveAsync();
+        return true;
     }
-    public async Task AddNoteToList(string listId, RelatedNoteInput data)
+    public async Task<bool> AddNoteToList(string listId, RelatedNoteInput data)
     {
         await CheckIfNoteListExists(listId);
         Notes notesResponse = await _notesRepository.FindByIdAsync(data.NoteId);
         notesResponse.ListId = !String.IsNullOrEmpty(notesResponse.ListId) ? notesResponse.ListId : listId;
         _notesRepository.Update(notesResponse);
         await _unitWork.SaveAsync();
+        return true;
     }
-    public async Task RemoveNoteFromList(string listId, string noteId)
+    public async Task<bool> RemoveNoteFromList(string listId, string noteId)
     {
         await CheckIfNoteListExists(listId);
         Notes notesResponse = await _notesRepository.FindByIdAsync(noteId);
@@ -114,8 +119,9 @@ public class NoteListsService : INoteListsUseCase
             _notesRepository.Update(notesResponse);
         }
         await _unitWork.SaveAsync();
+        return true;
     }
-    public async Task CheckedNoteLists()
+    public async Task<bool> CheckedNoteLists()
     {
         IEnumerable<Notes> notesResponse = (IEnumerable<Notes>)await _notesRepository.GetAllAsync();
         foreach (var item in notesResponse.Where(x => x.State == NoteStates.NOTCHECKED))
@@ -131,24 +137,26 @@ public class NoteListsService : INoteListsUseCase
             _noteListRepository.Update(item);
             await _unitWork.SaveAsync();
         }
+        return true;
     }
 
-    public async Task UpdateNoteLists(string listId, ModifiedNoteListsInput data)
+    public async Task<bool> UpdateNoteLists(string listId, ModifiedNoteListsInput data)
     {
         await CheckIfNoteListExists(listId);
         NoteLists notesListResponse = await _noteListRepository.FindByIdAsync(listId);
         notesListResponse.Name = string.IsNullOrEmpty(data.Name) ? notesListResponse.Name : data.Name;
-        notesListResponse.State = data.State == null ? notesListResponse.State : (NoteStates)data.State;
+        notesListResponse.State = data.State <= 0 ? notesListResponse.State : (NoteStates)data.State;
         notesListResponse.LastUpdateDate = DateTime.UtcNow;
         notesListResponse.UpdaterUser = "Test";
         _noteListRepository.Update(notesListResponse);
         await _unitWork.SaveAsync();
+        return true;
     }
     #region private
     public async Task CheckIfNoteListExists(string listId)
     {
         NoteLists result = await _noteListRepository.FindByIdAsync(listId)
-            ?? throw BusinessException.Throw(BusinessExceptionTypes.RecordNotFound, _settings);
+            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
     }
     #endregion private
 }

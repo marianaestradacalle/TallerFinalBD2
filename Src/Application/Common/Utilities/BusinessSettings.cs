@@ -1,15 +1,14 @@
 ﻿namespace Application.Common.Utilities;
 public class BusinessSettings
 {
-    public string DomainName { get; set; }
-    public string DefaultCountry { get; set; }
-    public string CRON_SONDA_JOB { get; set; }
-    public string NotificationsSendMailEvent { get; set; }
-    public string Requestqueue { get; set; }
-    public string Requesttopic { get; set; }
-    public string HealthChecksEndPoint { get; set; }
-    public string HttpPort { get; set; }
-    public string GRPCPort { get; set; }
-    public ServiceException ServiceExceptionByDefault { get; set; }
-    public IEnumerable<ServiceException> ServiceExceptions { get; set; }
+    public string DomainName { get; set; } = string.Empty;
+    public string DefaultCountry { get; set; } = string.Empty;
+    public string CRON_SONDA_JOB { get; set; } = string.Empty;
+    public string NotificationsSendMailEvent { get; set; } = string.Empty;
+    public string Requestqueue { get; set; } = string.Empty;
+    public string Requesttopic { get; set; } = string.Empty;
+    public string HealthChecksEndPoint { get; set; } = string.Empty;
+    public string HttpPort { get; set; } = string.Empty;
+    public string GRPCPort { get; set; } = string.Empty;
+    public IEnumerable<ServiceException>? ServiceExceptions { get; set; }
 }

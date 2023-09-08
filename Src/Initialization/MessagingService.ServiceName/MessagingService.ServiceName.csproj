@@ -18,7 +18,6 @@
 		<PackageReference Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCore)" />
 		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="$(MicrosoftExtensionsPlatformAbstractions)" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtensionsMicrosoftDependencyInjection)" />
-		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="$(MicrosoftVisualStudioAzureContainersToolsTargets)" />
 		<PackageReference Include="SC.Configuration.Provider.Mongo" Version="$(SCConfigurationProviderMongo)" />
 		<PackageReference Include="Serilog" Version="$(Serilog)" />
 		<PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCore)" />

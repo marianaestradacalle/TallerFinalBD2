@@ -1,7 +1,6 @@
 ﻿using Common.Helpers.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
 
 namespace RestApi.Filters;
 public class ExceptionFilter : ExceptionFilterAttribute
@@ -17,7 +16,8 @@ public class ExceptionFilter : ExceptionFilterAttribute
 
         _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
         {
-            { typeof(BusinessException), HandleBusinessException }
+            { typeof(BusinessException), HandleBusinessException }, 
+            { typeof(CommonExceptions), HandleCommonException }
         };
     }
 
@@ -33,8 +33,27 @@ public class ExceptionFilter : ExceptionFilterAttribute
         Type type = context.Exception.GetType();
         if (_exceptionHandlers.ContainsKey(type))
         {
-            _exceptionHandlers[type].Invoke(context);
+           _exceptionHandlers[type].Invoke(context);            
+            
             return;
+        }
+        else 
+        {
+            var details = new
+            {
+                Function = context.HttpContext.Request.Path.Value,
+                ErrorCode =StatusCodes.Status500InternalServerError,
+                Message = context.Exception.Message,
+                Country = "co",
+                Data = ""
+            };
+
+            context.Result = new ObjectResult(details);
+            context.ExceptionHandled = true;
+            context.HttpContext.Response.StatusCode = (int)StatusCodes.Status500InternalServerError;
+
+            return ;
+          
         }
     }
 
@@ -46,8 +65,31 @@ public class ExceptionFilter : ExceptionFilterAttribute
 
         var details = new
         {
-            Title = "Business Exception",
-            Error = exception.Message
+            Function = context.HttpContext.Request.Path.Value,
+            ErrorCode = exception.Code,
+            Message = $"Business Exception - {exception.Message}",
+            Country = "co",
+            Data = ""
+        };
+
+        context.Result = new BadRequestObjectResult(details);
+
+        context.ExceptionHandled = true;
+    }
+
+    private void HandleCommonException(ExceptionContext context)
+    {
+        _logger.LogError(context.Exception.ToString());
+
+        var exception = (CommonExceptions)context.Exception;
+
+        var details = new
+        {
+            Function = context.HttpContext.Request.Path.Value,
+            ErrorCode = exception.Code,
+            Message = $"Common Exception - {exception.Message}",
+            Country = "co",
+            Data = ""
         };
 
         context.Result = new BadRequestObjectResult(details);

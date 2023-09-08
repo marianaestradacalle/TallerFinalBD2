@@ -1,6 +1,5 @@
 ﻿using Application;
 using Application.Common.Utilities;
-using Application.DTOs;
 using Application.Interfaces.Infraestructure;
 using Core.Entities;
 using FluentValidation;
@@ -31,11 +30,6 @@ public static class ServicesConfiguration
                                .AllowAnyHeader();
              });
          });
-    public static IServiceCollection RegisterAutoMapper(this IServiceCollection services)
-    {
-        services.AddAutoMapper(typeof(MappingProfile));
-        return services;
-    }
     public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration, string servicesBusConnection)
     {
         #region Adaptadores

@@ -24,8 +24,6 @@ public static class ServicesConfiguration
         services.AddScoped<IUnitWork, UnitWork>();
         services.AddAsyncGateway<dynamic>(serviceBusConn);
         services.AddAdaptersAzServiceBus();
-
-
         #endregion
 
         #region Jobs
@@ -33,22 +31,24 @@ public static class ServicesConfiguration
         #endregion
 
         #region UseCase
-        services.AddTransient<INotesUseCase>(provider => new NotesService(
-            services.BuildServiceProvider().GetService<IGenericRepositoryAdapter<Notes>>(),
-            services.BuildServiceProvider().GetService<ILogger<NotesService>>(),
-            services.BuildServiceProvider().GetService<IMapper>(),
-            services.BuildServiceProvider().GetService<INotificationServiceEventAdapter>(),
-            services.BuildServiceProvider().GetService<IOptionsMonitor<BusinessSettings>>(),
-            services.BuildServiceProvider().GetService<IUnitWork>()));
-        #endregion UseCase
 
-        services.AddScheduler();
+        services.AddTransient<INotesUseCase>(provider => new NotesService(
+             services.BuildServiceProvider().GetService<IGenericRepositoryAdapter<Notes>>(),
+             services.BuildServiceProvider().GetService<ILogger<NotesService>>(),
+             services.BuildServiceProvider().GetService<IMapper>(),
+             services.BuildServiceProvider().GetService<INotificationServiceEventAdapter>(),
+             services.BuildServiceProvider().GetService<IOptionsMonitor<BusinessSettings>>(),
+             services.BuildServiceProvider().GetService<IUnitWork>()));
+
+    #endregion UseCase
+
+    services.AddScheduler();
         return services;
     }
 
     public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration, string ServiceBusConnectionSecret, string HangFireConnectionString)
     {
-        string servicesBusConnection = configuration[ServiceBusConnectionSecret];
+        var servicesBusConnection = string.IsNullOrEmpty(configuration[ServiceBusConnectionSecret]) ? "" : configuration[ServiceBusConnectionSecret];
         services.AddServices(servicesBusConnection);
         services.AddMongoProvidersConfiguration(configuration);
         services.AddConfigHangfire(HangFireConnectionString);
@@ -61,7 +61,6 @@ public static class ServicesConfiguration
     }
     public static IServiceCollection AddConfigHangfire(this IServiceCollection services, string HangFireConnectionString)
     {
-        // Add Hangfire services.
         services.AddHangfire(configuration => configuration
             .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
             .UseSimpleAssemblyNameTypeSerializer()

@@ -1,7 +1,7 @@
 ﻿using Application.Common.Utilities;
 using System.Collections.Generic;
 
-namespace Common.Tests.Utilities.Builders;
+namespace Application.Tests.Common.Utilities;
 
 public class AppSettingsBuilder
 {

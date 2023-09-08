@@ -68,7 +68,8 @@ public class GenericRepositoryService<TEntity> : IGenericRepositoryAdapter<TEnti
 
     public async Task<TEntity> FindByIdAsync(params object[] keys)
     {
-        return await dbSet.FindAsync(keys);
+            return await dbSet.FindAsync(keys);
+        
     }
 
     public async Task AddAsync(TEntity entity)

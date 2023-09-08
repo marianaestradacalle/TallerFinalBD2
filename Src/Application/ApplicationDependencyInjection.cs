@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Services;
+﻿using Application.DTOs;
+using Application.Interfaces.Services;
 using Application.Services.Compound;
 using Application.Services.Simple;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,4 +15,11 @@ public static class ApplicationDependencyInjection
         services.AddScoped<INoteCleaningService, NoteCleaningService>();
         return services;
     }
+
+    public static IServiceCollection RegisterAutoMapper(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(MappingProfile));
+        return services;
+    }
+    
 }
