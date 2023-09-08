@@ -44,6 +44,9 @@ string ServiceBusConnectionSecret = builder.Configuration.GetValue<string>(build
 builder.Configuration.AddJsonProvider();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.RegisterAutoMapper();
+builder.Services.AddConfigureDatabaseSQL(configuration);
+builder.Services.RegisterAutoMapper();
 builder.Services.RegisterServices(configuration, ServiceBusConnectionSecret);
 builder.Services.AddHealthChecks();
 builder.Host.UseSerilog((hostContext, services, configuration) =>
@@ -72,7 +75,7 @@ app.Run();
 #region ConfigurationKeyVault
 void AddkeyValult(IConfigurationBuilder config, IConfigurationRoot configurationRoot, IWebHostEnvironment environment)
 {
-    if ((builder.Configuration["AppSettings:Environment"]) == "Local")
+    if (environment.EnvironmentName.Equals("Local"))
     {
         ClientSecretCredential clientSecretCredential = new ClientSecretCredential(builder.Configuration["AzureKeyVaultConfig:TenantId"], builder.Configuration["AzureKeyVaultConfig:AppId"], builder.Configuration["AzureKeyVaultConfig:AppSecret"]);
         SecretClient client = new SecretClient(new Uri(builder.Configuration["AzureKeyVaultConfig:KeyVault"]), clientSecretCredential);

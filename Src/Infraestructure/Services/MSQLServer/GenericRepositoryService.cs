@@ -14,8 +14,8 @@ public class GenericRepositoryService<TEntity> : IGenericRepositoryAdapter<TEnti
         dbSet = context.Set<TEntity>();
     }
 
-    public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
-             IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", bool track = false)
+    public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>,
+             IOrderedQueryable<TEntity>>? orderBy = null, string includeProperties = "", bool track = false)
     {
 
         IQueryable<TEntity> query = (!track) ? dbSet.AsNoTracking() : dbSet;
@@ -41,8 +41,8 @@ public class GenericRepositoryService<TEntity> : IGenericRepositoryAdapter<TEnti
         }
     }
 
-    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
-            IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", bool track = false)
+    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>,
+            IOrderedQueryable<TEntity>>? orderBy = null, string includeProperties = "", bool track = false)
     {
 
         IQueryable<TEntity> query = (!track) ? dbSet.AsNoTracking() : dbSet;

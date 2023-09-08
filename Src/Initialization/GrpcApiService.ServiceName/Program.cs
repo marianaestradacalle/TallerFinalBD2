@@ -94,7 +94,7 @@ app.Run();
 #region ConfigurationKeyVault
 void AddkeyValult(IConfigurationBuilder config, IConfigurationRoot configurationRoot, IWebHostEnvironment environment)
 {
-    if ((builder.Configuration["AppSettings:Environment"]) == "Local")
+    if (environment.EnvironmentName.Equals("Local"))
     {
         ClientSecretCredential clientSecretCredential = new ClientSecretCredential(builder.Configuration["AzureKeyVaultConfig:TenantId"], builder.Configuration["AzureKeyVaultConfig:AppId"], builder.Configuration["AzureKeyVaultConfig:AppSecret"]);
         SecretClient client = new SecretClient(new Uri(builder.Configuration["AzureKeyVaultConfig:KeyVault"]), clientSecretCredential);
