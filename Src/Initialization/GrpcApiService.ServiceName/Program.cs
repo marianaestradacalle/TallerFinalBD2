@@ -5,7 +5,7 @@ using Azure.Security.KeyVault.Secrets;
 using Calzolari.Grpc.AspNetCore.Validation;
 using GrpcApiService.ServiceName.Configuration;
 using GrpcApiService.ServiceName.Services;
-using Infraestructure;
+using Infrastructure;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using SC.Configuration.Provider.Mongo;
 using Serilog;

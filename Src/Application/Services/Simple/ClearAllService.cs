@@ -2,7 +2,7 @@
 using Common.Helpers.Exceptions;
 using Application.Common.Utilities;
 using Core.Entities;
-using Application.Interfaces.Infraestructure;
+using Application.Interfaces.Infrastructure;
 using Application.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

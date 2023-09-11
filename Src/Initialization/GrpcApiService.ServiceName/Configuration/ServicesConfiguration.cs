@@ -1,13 +1,13 @@
 ﻿using Application;
 using Application.Common.Utilities;
 using Application.DTOs;
-using Application.Interfaces.Infraestructure;
+using Application.Interfaces.Infrastructure;
 using Calzolari.Grpc.AspNetCore.Validation;
 using Core.Entities;
 using GrpcApi.Exceptions;
 using GrpcApiService.ServiceName.Services;
 using GrpcApiService.ServiceName.Validations;
-using Infraestructure;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Services.MSQLServer;

@@ -1,10 +1,10 @@
 ﻿using Application;
 using Application.Common.Utilities;
 using Application.DTOs;
-using Application.Interfaces.Infraestructure;
+using Application.Interfaces.Infrastructure;
 using Core.Entities;
 using FluentValidation;
-using Infraestructure;
+using Infrastructure;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;

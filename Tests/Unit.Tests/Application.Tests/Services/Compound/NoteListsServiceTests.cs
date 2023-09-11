@@ -2,9 +2,9 @@
 using AutoMapper;
 using Core.Entities;
 using Dobles.Tests.Dummy.Generic;
-using Dobles.Tests.Dummy.InfraestructureServices;
+using Dobles.Tests.Dummy.InfrastructureServices;
 using Dobles.Tests.Fake.Generic;
-using Dobles.Tests.Fake.InfraestructureServices;
+using Dobles.Tests.Fake.InfrastructureServices;
 using Dobles.Tests.Mocks.Generic;
 using Dobles.Tests.Stubs.Generic;
 using Microsoft.Extensions.Logging;

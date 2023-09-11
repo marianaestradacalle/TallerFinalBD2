@@ -1,4 +1,4 @@
-﻿using Application.Interfaces.Infraestructure;
+﻿using Application.Interfaces.Infrastructure;
 using Microsoft.Extensions.Logging;
 using org.reactivecommons.api;
 using org.reactivecommons.api.domain;

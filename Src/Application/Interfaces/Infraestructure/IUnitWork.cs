@@ -1,4 +1,4 @@
-﻿namespace Application.Interfaces.Infraestructure;
+﻿namespace Application.Interfaces.Infrastructure;
 public interface IUnitWork
 {
     void CreateTransaction();

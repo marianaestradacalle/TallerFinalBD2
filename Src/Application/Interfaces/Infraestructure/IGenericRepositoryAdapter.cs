@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Application.Interfaces.Infraestructure;
+namespace Application.Interfaces.Infrastructure;
 public interface IGenericRepositoryAdapter<TEntity> : IDisposable where TEntity : class
 {
     Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", bool track = false);

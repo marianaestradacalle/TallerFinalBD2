@@ -1,6 +1,6 @@
 ﻿using Application.Common.Utilities;
 using Application.DTOs;
-using Application.Interfaces.Infraestructure;
+using Application.Interfaces.Infrastructure;
 using Application.Interfaces.Services;
 using Application.Services.Simple;
 using AutoMapper;
@@ -8,7 +8,7 @@ using Coravel;
 using Core.Entities;
 using Hangfire;
 using Hangfire.SqlServer;
-using Infraestructure;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Services.MSQLServer;

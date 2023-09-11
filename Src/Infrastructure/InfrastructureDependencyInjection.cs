@@ -1,4 +1,4 @@
-﻿using Application.Interfaces.Infraestructure;
+﻿using Application.Interfaces.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,8 +7,8 @@ using org.reactivecommons.api.impl;
 using Services.AzServiceBus;
 using Services.MSQLServer;
 
-namespace Infraestructure;
-public static class InfraestructureDependencyInjection
+namespace Infrastructure;
+public static class InfrastructureDependencyInjection
 {
     public static IServiceCollection AddAdaptersAzServiceBus(this IServiceCollection services)
     {

@@ -1,4 +1,4 @@
-using Infraestructure;
+using Infrastructure;
 using MessagingService.ServiceName.Configuration;
 using SC.Configuration.Provider.Mongo;
 using Serilog;

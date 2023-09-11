@@ -2,7 +2,7 @@ using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using FluentValidation;
-using Infraestructure;
+using Infrastructure;
 using RestApi.Middlewares;
 using RestApi.Validations;
 using RestApiService.ServiceName.Configuration;

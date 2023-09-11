@@ -1,6 +1,6 @@
 ﻿using Application.Common.Utilities;
 using Application.DTOs.Notes;
-using Application.Interfaces.Infraestructure;
+using Application.Interfaces.Infrastructure;
 using Application.Interfaces.Services;
 using AutoMapper;
 using Common.Helpers.Exceptions;
@@ -8,7 +8,6 @@ using Core.Entities;
 using Core.Enumerations;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Net.Http.Headers;
 
 namespace Application.Services.Simple;
 public class NotesService : INotesUseCase

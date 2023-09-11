@@ -1,4 +1,4 @@
-﻿using Application.Interfaces.Infraestructure;
+﻿using Application.Interfaces.Infrastructure;
 
 namespace Services.AzServiceBus;
 public class NotificationServiceBusService : INotificationServiceEventAdapter

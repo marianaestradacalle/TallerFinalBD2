@@ -5,7 +5,7 @@ using Azure.Security.KeyVault.Secrets;
 using CronJobService.ServiceName;
 using CronJobService.ServiceName.Configuration;
 using Hangfire;
-using Infraestructure;
+using Infrastructure;
 using SC.Configuration.Provider.Mongo;
 using Serilog;
 

@@ -1,4 +1,4 @@
-﻿using Application.Interfaces.Infraestructure;
+﻿using Application.Interfaces.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Services.MSQLServer;

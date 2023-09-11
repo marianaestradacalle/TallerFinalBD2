@@ -34,12 +34,12 @@
 	<Folder Include="Dummy\ApplicationServices\" />
 	<Folder Include="Fake\ApplicationServices\" />
 	<Folder Include="Mocks\ApplicationServices\" />
-	<Folder Include="Mocks\InfraestructureServices\" />
+	<Folder Include="Mocks\InfrastructureServices\" />
 	<Folder Include="Spy\ApplicationServices\" />
-	<Folder Include="Spy\InfraestructureServices\" />
+	<Folder Include="Spy\InfrastructureServices\" />
 	<Folder Include="Spy\Generic\" />
 	<Folder Include="Stubs\ApplicationServices\" />
-	<Folder Include="Stubs\InfraestructureServices\" />
+	<Folder Include="Stubs\InfrastructureServices\" />
   </ItemGroup>
 
 </Project>

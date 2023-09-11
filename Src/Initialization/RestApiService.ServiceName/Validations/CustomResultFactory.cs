@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Results;
-using System.Net;
 
 namespace RestApiService.ServiceName.Validations
 {
@@ -11,8 +10,12 @@ namespace RestApiService.ServiceName.Validations
         {
             var details = new
             {
-                Title = "BadRequest",
-                Error = ErrorMessagesHandle(context)
+                Function = context.HttpContext.Request.Path.Value,
+                ErrorCode = ErrorMessagesHandle(context),
+                Message = ErrorMessagesHandle(context),
+                Country = "co",
+                Data = ""
+
             };
 
             return new BadRequestObjectResult(details);

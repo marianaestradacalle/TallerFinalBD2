@@ -1,12 +1,12 @@
 ﻿using Application.Common.Utilities;
 using Application.DTOs;
 using Application.DTOs.Notes;
-using Application.Interfaces.Infraestructure;
+using Application.Interfaces.Infrastructure;
 using Application.Interfaces.Services;
 using Application.Services.Simple;
 using AutoMapper.Data;
 using Core.Entities;
-using Infraestructure;
+using Infrastructure;
 using MessagingService.ServiceName.Subscriptions;
 using Microsoft.EntityFrameworkCore;
 using Services.MSQLServer;

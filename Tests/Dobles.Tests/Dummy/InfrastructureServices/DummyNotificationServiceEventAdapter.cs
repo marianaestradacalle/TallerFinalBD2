@@ -1,8 +1,8 @@
-﻿using Application.Interfaces.Infraestructure;
+﻿using Application.Interfaces.Infrastructure;
 using System;
 using System.Threading.Tasks;
 
-namespace Dobles.Tests.Dummy.InfraestructureServices
+namespace Dobles.Tests.Dummy.InfrastructureServices
 {
     public class DummyNotificationServiceEventAdapter : INotificationServiceEventAdapter
     {

@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Src\Core\Core.cspro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Src\Application\Application.csproj", "{F1228B0D-E496-4F35-90B0-AECFE3BE262C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infraestructure", "Src\Infraestructure\Infraestructure.csproj", "{A15EF037-6C93-4900-890A-3FB05BB9044A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Src\Infrastructure\Infrastructure.csproj", "{A15EF037-6C93-4900-890A-3FB05BB9044A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dobles.Tests", "Tests\Dobles.Tests\Dobles.Tests.csproj", "{366F5FCE-773D-43A3-AF9C-BC1047D96489}"
 EndProject
