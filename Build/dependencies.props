@@ -52,6 +52,12 @@
 		<GrpcAspNetCoreServer>2.52.0</GrpcAspNetCoreServer>
 		<MicrosoftEntityFrameworkCoreSqlServer>7.0.4</MicrosoftEntityFrameworkCoreSqlServer>
 		<MicrosoftEntityFrameworkCore>7.0.4</MicrosoftEntityFrameworkCore>
+		<MicrosoftExtensionsHosting>7.0.1</MicrosoftExtensionsHosting>
+		<SharpGripFluentValidationAutoValidationMvc>1.1.0</SharpGripFluentValidationAutoValidationMvc>
+		<SwashbuckleAspNetCoreSwaggerGen>6.5.0</SwashbuckleAspNetCoreSwaggerGen>
+		<MicrosoftOpenApi>1.2.3</MicrosoftOpenApi>
+		<MongoDBDriver>2.14.1</MongoDBDriver>
+		<MongoDBBson>2.14.1</MongoDBBson>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Test Package Versions">

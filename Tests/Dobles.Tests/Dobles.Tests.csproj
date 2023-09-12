@@ -9,7 +9,7 @@
 
   <ItemGroup>
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdk)" />
-	  <PackageReference Include="Moq" Version="4.18.4" />
+	  <PackageReference Include="Moq" Version="$(Moq)" />
 	  <PackageReference Include="FluentAssertions" Version="$(FluentAssertions)" />
 	  <PackageReference Include="OpenCover" Version="$(OpenCover)" />
 	  <PackageReference Include="xunit" Version="$(xunit)" />

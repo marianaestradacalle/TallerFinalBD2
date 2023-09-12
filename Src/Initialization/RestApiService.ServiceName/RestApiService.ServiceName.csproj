@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SharpGrip.FluentValidation.AutoValidation.Mvc" Version="1.1.0" />
+    <PackageReference Include="SharpGrip.FluentValidation.AutoValidation.Mvc" Version="$(SharpGripFluentValidationAutoValidationMvc)" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCore)" />
   </ItemGroup>
 
@@ -20,8 +20,8 @@
 		<PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="$(AzureExtensionsAspNetCoreConfigurationSecrets)" />
 		<PackageReference Include="SC.Configuration.Provider.Mongo" Version="$(SCConfigurationProviderMongo)" />
 		<PackageReference Include="Azure.Identity" Version="$(AzureIdentity)" />
-		<PackageReference Include="Microsoft.OpenApi" Version="1.2.3" />
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+		<PackageReference Include="Microsoft.OpenApi" Version="$(MicrosoftOpenApi)" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="$(SwashbuckleAspNetCoreSwaggerGen)" />
 	</ItemGroup>
 
 	<ItemGroup>
