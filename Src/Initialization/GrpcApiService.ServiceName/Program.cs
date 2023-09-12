@@ -38,6 +38,7 @@ string ServiceBusConnectionSecret = builder.Configuration.GetValue<string>(build
 BusinessSettings settings = builder.Configuration.GetSection(nameof(BusinessSettings)).Get<BusinessSettings>();
 builder.Services.Configure<BusinessSettings>(builder.Configuration.GetRequiredSection(nameof(BusinessSettings)));
 string country = settings.DefaultCountry;
+string MongoConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:MongoConnection").Value);
 
 #region Service Configuration
 builder.WebHost.ConfigureKestrel(options =>
@@ -49,6 +50,7 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 
 builder.Services
+    .AddMongoDataBase(MongoConnectionSecret, builder.Configuration.GetSection("AppSettings:Database").Value)
     .RegisterAutoMapper()
     .AddConfigureDatabaseSQL(configuration)
     .RegisterAutoMapper()
