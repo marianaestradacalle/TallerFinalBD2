@@ -23,7 +23,7 @@ stages:
     parameters:
       nombreDelStage: build
       conexionSonar: sc_sonarcloud_codecheck-PlantillasContenedoresC4
-      nombreDelArchivoSln: msv-clean.sln
+      nombreDelArchivoSln: ing-dnc-bms-backend.sln
       nombreDeLaSolucion: RestApiService.ServiceName
       excluirDeSonar: "**/Src/Infraestructure/**,**/Src/Initialization/**"
 
