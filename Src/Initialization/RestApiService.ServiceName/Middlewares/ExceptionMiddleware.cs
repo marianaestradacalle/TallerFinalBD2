@@ -27,7 +27,7 @@ public static class ExceptionMiddleware
                         ErrorCode = contextFeature.Error,
                         Message = $"{errorMessage}. {message}",
                         Country = "co",
-                        Data = ""
+                        Data = string.Empty
                     };
                     await context.Response.WriteAsync(JsonConvert.SerializeObject(details));
                 }

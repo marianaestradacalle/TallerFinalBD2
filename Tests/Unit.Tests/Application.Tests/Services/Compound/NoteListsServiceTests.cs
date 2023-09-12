@@ -19,6 +19,7 @@ public class NoteListsServiceTests
     private MockConfiguration<NotesService> mockConfiguration = new MockConfiguration<NotesService>();
     public NotesService CreateNotesService;
     private FakeMapper fakeMapper = new FakeMapper();
+    private FakeNotasRepository fakeNotasRepository = new FakeNotasRepository();
 
     public NoteListsServiceTests() 
     {
@@ -28,7 +29,8 @@ public class NoteListsServiceTests
                                     (IMapper)fakeMapper.GetFakeMapper(),
                                     dummyNotificationServiceEventAdapter,
                                     stubSettings.StubSetting(),
-                                    dummyUnitWork);
+                                    dummyUnitWork,
+                                    fakeNotasRepository);
     }    
 
 

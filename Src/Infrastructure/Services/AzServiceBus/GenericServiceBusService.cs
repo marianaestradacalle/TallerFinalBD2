@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using org.reactivecommons.api;
 using org.reactivecommons.api.domain;
 
-namespace Services.AzServiceBus;
+namespace Infrastructure.Services.AzServiceBus;
 public class GenericServiceBusService<T> : IGenericServiceEventAdapter<T> where T : class
 {   
     private readonly IDirectAsyncGateway<T> _directAsyncGateway;

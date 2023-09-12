@@ -51,7 +51,7 @@ public class RequestHeaderMiddleware
                     ErrorCode = ex.Source,
                     Message = ex.Message,
                     Country = "co",
-                    Data = ""
+                    Data = string.Empty
                 };
 
                 return;

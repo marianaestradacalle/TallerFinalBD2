@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces.Infrastructure;
 
-namespace Services.AzServiceBus;
+namespace Infrastructure.Services.AzServiceBus;
 public class NotificationServiceBusService : INotificationServiceEventAdapter
 {
     private readonly IGenericServiceEventAdapter<object> _genericEventAdapter;

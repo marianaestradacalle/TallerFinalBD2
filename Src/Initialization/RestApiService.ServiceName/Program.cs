@@ -41,9 +41,12 @@ builder.Services.AddControllers();
 builder.Services.UseRestApiFilters();
 builder.Services.AddValidators();
 string ServiceBusConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:ServiceBusConnection").Value);
+string MongoConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:MongoConnection").Value);
+
 builder.Configuration.AddJsonProvider();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMongoDataBase(MongoConnectionSecret, builder.Configuration.GetSection("AppSettings:Database").Value);
 builder.Services.RegisterAutoMapper();
 builder.Services.AddConfigureDatabaseSQL(configuration);
 builder.Services.RegisterAutoMapper();

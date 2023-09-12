@@ -18,13 +18,15 @@ public class NotesService : INotesUseCase
     private readonly INotificationServiceEventAdapter _NotificationEventAdapter;
     private readonly BusinessSettings _settings;
     private readonly IUnitWork _unitWork;
+    private readonly INotasRepository _notasRepository;
 
     public NotesService(IGenericRepositoryAdapter<Notes> repository,
         ILogger<NotesService> logger,
         IMapper mapper,
         INotificationServiceEventAdapter notificationEventAdapter,
         IOptionsMonitor<BusinessSettings> settings,
-        IUnitWork unitWork)
+        IUnitWork unitWork,
+        INotasRepository notasRepository)
     {
         _notesRepository = repository;
         _logger = logger;
@@ -32,7 +34,9 @@ public class NotesService : INotesUseCase
         _NotificationEventAdapter = notificationEventAdapter;
         _settings = settings.CurrentValue;
         _unitWork = unitWork;
+        _notasRepository = notasRepository;
         _logger.LogInformation("Use case {class} used at: {@time}", nameof(NotesService), DateTimeOffset.Now);
+        
     }
     public async Task<NoteOutput> CreateNote(NoteInput data)
     {
@@ -50,6 +54,10 @@ public class NotesService : INotesUseCase
     }
     public async Task<IEnumerable<SimplifiedNoteOutput>> GetNotes()
     {
+        string param = _settings.CRON_SONDA_JOB;
+
+        var pruebaMongo = await _notasRepository.GetAllNotes();
+                
         IEnumerable<Notes> simplifiedNoteResponse = await _notesRepository.GetAllAsync()
                             ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
         return _mapper.Map<IEnumerable<Notes>, IEnumerable<SimplifiedNoteOutput>>(simplifiedNoteResponse);

@@ -10,6 +10,7 @@ using Hangfire;
 using Hangfire.SqlServer;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Services.MSQLServer;
 
@@ -38,7 +39,8 @@ public static class ServicesConfiguration
              services.BuildServiceProvider().GetService<IMapper>(),
              services.BuildServiceProvider().GetService<INotificationServiceEventAdapter>(),
              services.BuildServiceProvider().GetService<IOptionsMonitor<BusinessSettings>>(),
-             services.BuildServiceProvider().GetService<IUnitWork>()));
+             services.BuildServiceProvider().GetService<IUnitWork>(),
+             services.BuildServiceProvider().GetService<INotasRepository>()));
 
     #endregion UseCase
 

@@ -11,10 +11,10 @@ namespace RestApiService.ServiceName.Validations
             var details = new
             {
                 Function = context.HttpContext.Request.Path.Value,
-                ErrorCode = ErrorMessagesHandle(context),
+                ErrorCode = 400,
                 Message = ErrorMessagesHandle(context),
                 Country = "co",
-                Data = ""
+                Data = string.Empty
 
             };
 

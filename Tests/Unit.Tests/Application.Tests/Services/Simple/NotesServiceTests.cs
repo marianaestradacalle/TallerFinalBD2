@@ -27,6 +27,7 @@ public class NotesServiceTests
     public NotesService CreateNotesService;
     private StubSettings stubSettings = new StubSettings();
     private FakeMapper fakeMapper = new FakeMapper();
+    private FakeNotasRepository fakeNotasRepository = new FakeNotasRepository();
 
 
     public NotesServiceTests() 
@@ -36,7 +37,8 @@ public class NotesServiceTests
                                     (IMapper)fakeMapper.GetFakeMapper(),
                                     dummyNotificationServiceEventAdapter,
                                     stubSettings.StubSetting(),
-                                    dummyUnitWork);
+                                    dummyUnitWork,
+                                    fakeNotasRepository);
     }    
 
 

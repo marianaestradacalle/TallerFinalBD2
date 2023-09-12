@@ -45,7 +45,7 @@ public class ExceptionFilter : ExceptionFilterAttribute
                 ErrorCode =StatusCodes.Status500InternalServerError,
                 Message = context.Exception.Message,
                 Country = "co",
-                Data = ""
+                Data = string.Empty
             };
 
             context.Result = new ObjectResult(details);

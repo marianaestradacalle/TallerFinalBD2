@@ -22,7 +22,9 @@ builder.Host.UseSerilog((ctx, lc) => lc
 
 #region Service Configuration
 string ServiceBusConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:ServiceBusConnection").Value);
+string MongoConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:MongoConnection").Value);
 builder.Services
+    .AddMongoDataBase(MongoConnectionSecret, builder.Configuration.GetSection("AppSettings:Database").Value)
     .RegisterAutoMapper()
     .AddConfigureDatabaseSQL(configuration)
     .AddAsyncGateways(ServiceBusConnectionSecret)

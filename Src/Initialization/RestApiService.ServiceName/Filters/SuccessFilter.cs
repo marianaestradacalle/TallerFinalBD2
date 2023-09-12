@@ -6,20 +6,24 @@ public class SuccessFilter: ActionFilterAttribute
 {
     public override void OnResultExecuting(ResultExecutingContext context)
     {
-        var objectResult = context.Result as ObjectResult;
-        var resultValue = objectResult?.Value;
-
-        var details = new
+        var result = (ObjectResult)context.Result;
+        if (result.StatusCode.Equals(200))
         {
-            Function = context.HttpContext.Request.Path.Value,
-            ErrorCode = context.HttpContext.Response.StatusCode,
-            Message = string.Empty,
-            Country = "co",
-            Data = resultValue
-        };
+            var objectResult = context.Result as ObjectResult;
+            var resultValue = objectResult?.Value;
 
-        context.Result = new ObjectResult(details);
-        base.OnResultExecuting(context);
+            var details = new
+            {
+                Function = context.HttpContext.Request.Path.Value,
+                ErrorCode = context.HttpContext.Response.StatusCode,
+                Message = string.Empty,
+                Country = "co",
+                Data = resultValue
+            };
+
+            context.Result = new ObjectResult(details);
+            base.OnResultExecuting(context);
+        }
     }
 
 }
