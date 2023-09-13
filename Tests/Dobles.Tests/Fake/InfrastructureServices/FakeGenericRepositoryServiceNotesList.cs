@@ -30,8 +30,8 @@ public class FakeGenericRepositoryServiceNotesList<TEntity> : IGenericRepository
 
     }
 
-    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
-    IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", bool track = false)
+    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>,
+    IOrderedQueryable<TEntity>>? orderBy = null, string includeProperties = "", bool track = false)
     {
         return await Task.Run(() =>
         {

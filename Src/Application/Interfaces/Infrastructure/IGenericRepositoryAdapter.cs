@@ -3,8 +3,8 @@
 namespace Application.Interfaces.Infrastructure;
 public interface IGenericRepositoryAdapter<TEntity> : IDisposable where TEntity : class
 {
-    Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", bool track = false);
-    IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "", bool track = false);
+    Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, string includeProperties = "", bool track = false);
+    IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, string includeProperties = "", bool track = false);
     Task<TEntity> FindByIdAsync(object key);
     Task<TEntity> FindByIdAsync(params object[] keys);
     TEntity FindById(object key);

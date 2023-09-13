@@ -37,10 +37,10 @@ public class NoteCleaningService : INoteCleaningService
     public async Task<bool> DeleteAllChecked()
     {
         IEnumerable<Notes> notesResponse = (IEnumerable<Notes>)await _notesRepository.GetAllAsync(x => x.State == NoteStates.CHECKED)
-                    ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
+                   ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
 
         IEnumerable<NoteLists> notesListResponse = (IEnumerable<NoteLists>)await _noteListRepository.GetAllAsync(x => x.State == NoteStates.CHECKED)
-            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
+            ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
         foreach (var item in notesResponse)
         {
             _notesRepository.Delete(item.Id);

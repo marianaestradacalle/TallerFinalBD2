@@ -24,7 +24,7 @@ public class FakeNotasRepository : INotasRepository
     }
     public async Task<dynamic> GetAllNotes()
     {
-        return Task.Run(() =>
+        return await  Task.Run(() =>
         {
             return _mapper.Map<dynamic>(notes);
         });

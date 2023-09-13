@@ -17,7 +17,7 @@ public class CommonExceptions : Exception
               Description= "Este error se genera cuando no existe la propiedad en el archivo de configuración del servicio (appsettings) que contiene el listado de códigos de error."
         };
 
-        ServiceException serviceException = settings.ServiceExceptions.FirstOrDefault(_ => _.Id.Equals(exceptionType.ToString()))
+        ServiceException serviceException = settings.ServiceExceptions?.FirstOrDefault(_ => _.Id.Equals(exceptionType.ToString()))
             ?? serviceExceptionDefault;
 
         if (serviceException is null)

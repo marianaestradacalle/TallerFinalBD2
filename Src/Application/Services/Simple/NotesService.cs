@@ -54,19 +54,22 @@ public class NotesService : INotesUseCase
     }
     public async Task<IEnumerable<SimplifiedNoteOutput>> GetNotes()
     {
+        //prueba parametro mongo provider
         string param = _settings.CRON_SONDA_JOB;
-
+        //prueba consulata mongo driver
         var pruebaMongo = await _notasRepository.GetAllNotes();
-                
+
+        // throw BusinessException.Throw(_settings,BusinessExceptionTypes.NotControlledException.ToString());
+
         IEnumerable<Notes> simplifiedNoteResponse = await _notesRepository.GetAllAsync()
-                            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
+                            ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
         return _mapper.Map<IEnumerable<Notes>, IEnumerable<SimplifiedNoteOutput>>(simplifiedNoteResponse);
     }
     public async Task<NoteOutput> GetNote(string noteId)
     {
         await checkIfNoteExist(noteId);
         var noteResponse = await _notesRepository.FindByIdAsync(noteId)
-                        ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First()); ;
+                        ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
         return _mapper.Map<Notes, NoteOutput>(noteResponse);
     }
     public async Task<bool> DeleteCheckedIsolateNotes()
@@ -94,7 +97,7 @@ public class NotesService : INotesUseCase
         await checkIfNoteExist(noteId);
         Notes notesResponse = await _notesRepository.FindByIdAsync(noteId);
         notesResponse.Title = string.IsNullOrEmpty(data.Title) ? notesResponse.Title : data.Title;
-        notesResponse.State = data.State == null ? notesResponse.State : (NoteStates)data.State;
+        notesResponse.State = data.State == 0 ? notesResponse.State : (NoteStates)data.State;
         notesResponse.LastUpdateDate = DateTime.UtcNow;
         notesResponse.UpdaterUser = "Test";
         _notesRepository.Update(notesResponse);
@@ -109,7 +112,7 @@ public class NotesService : INotesUseCase
     private async Task checkIfNoteExist(string id)
     {
         Notes result = await _notesRepository.FindByIdAsync(id)
-            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
+            ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
     }
     #endregion private
 }

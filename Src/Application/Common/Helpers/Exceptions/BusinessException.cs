@@ -1,5 +1,4 @@
 ﻿using Application.Common.Utilities;
-using System.Runtime.Serialization;
 
 namespace Common.Helpers.Exceptions
 {
@@ -19,7 +18,8 @@ namespace Common.Helpers.Exceptions
                 Message = "Error desconocido.",
                 Description = "Este error se genera cuando no existe la propiedad en el archivo de configuración del servicio (appsettings) que contiene el listado de códigos de error."
             };
-            ServiceException serviceException = settings.ServiceExceptions.FirstOrDefault(_ => _.Code.Equals(code))
+            ServiceException serviceException = 
+                settings.ServiceExceptions?.FirstOrDefault(_ => _.Id.Equals(code))
                 ?? serviceExceptionDefault;
 
             if (serviceException is null)

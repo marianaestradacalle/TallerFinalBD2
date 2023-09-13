@@ -36,10 +36,10 @@ public class ClearAllService : IClearAllUseCase
     public async Task<bool> Apply()
     {
         IEnumerable<Notes> notesResponse = (IEnumerable<Notes>)await _notesRepository.GetAllAsync()
-                        ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
+                        ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
 
         IEnumerable<NoteLists> notesListResponse = (IEnumerable<NoteLists>)await _notaListRepository.GetAllAsync()
-                    ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
+                    ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
         foreach (var item in notesResponse)
         {
             _notesRepository.Delete(item.Id);

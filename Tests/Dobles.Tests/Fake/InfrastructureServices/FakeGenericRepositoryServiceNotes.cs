@@ -25,13 +25,13 @@ public class FakeGenericRepositoryServiceNotes<TEntity> : IGenericRepositoryAdap
 
         _mapper = (IMapper)_fakeMapper.GetFakeMapper();
     }
-    public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
+    public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>,
     IOrderedQueryable<TEntity>>? orderBy = null, string includeProperties = "", bool track = false)
     {
         return _mapper.Map<IEnumerable<TEntity>>(filter);
     }
 
-    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>,
+    public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>,
     IOrderedQueryable<TEntity>>? orderBy = null, string includeProperties = "", bool track = false)
     {
         return await Task.Run(() =>

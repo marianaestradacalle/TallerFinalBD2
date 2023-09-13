@@ -45,8 +45,7 @@ public class NoteListsService : INoteListsUseCase
     public async Task<IEnumerable<SimplifiedNoteListOutput>> GetNoteLists()
     {
         IEnumerable<NoteLists> simplifiedNoteListResponse = await _noteListRepository.GetAllAsync()
-                                ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == 
-                                BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
+                                ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
 
         return _mapper.Map<IEnumerable<NoteLists>, IEnumerable<SimplifiedNoteListOutput>>(simplifiedNoteListResponse);
     }
@@ -54,8 +53,7 @@ public class NoteListsService : INoteListsUseCase
     {
         await CheckIfNoteListExists(listId);
         var noteListResponse = await _noteListRepository.FindByIdAsync(listId)
-                            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == 
-                            BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
+                            ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
         return _mapper.Map<NoteLists, NoteListOutput>(noteListResponse);
     }
     public async Task<bool> DeleteNoteList(string listId)
@@ -156,7 +154,7 @@ public class NoteListsService : INoteListsUseCase
     public async Task CheckIfNoteListExists(string listId)
     {
         NoteLists result = await _noteListRepository.FindByIdAsync(listId)
-            ?? throw BusinessException.Throw(_settings, _settings.ServiceExceptions.Where(x => x.Id == BusinessExceptionTypes.NotControlledException.ToString()).Select(x => x.Code).First());
+            ?? throw BusinessException.Throw(_settings, BusinessExceptionTypes.NotControlledException.ToString());
     }
     #endregion private
 }

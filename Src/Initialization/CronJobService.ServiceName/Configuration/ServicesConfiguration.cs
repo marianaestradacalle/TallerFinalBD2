@@ -10,7 +10,6 @@ using Hangfire;
 using Hangfire.SqlServer;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Services.MSQLServer;
 
