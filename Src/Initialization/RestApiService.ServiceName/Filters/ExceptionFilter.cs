@@ -30,30 +30,12 @@ public class ExceptionFilter : ExceptionFilterAttribute
 
     private void HandleException(ExceptionContext context)
     {
+
         Type type = context.Exception.GetType();
         if (_exceptionHandlers.ContainsKey(type))
         {
-           _exceptionHandlers[type].Invoke(context);            
-            
+            _exceptionHandlers[type].Invoke(context);
             return;
-        }
-        else 
-        {
-            var details = new
-            {
-                Function = context.HttpContext.Request.Path.Value,
-                ErrorCode =StatusCodes.Status500InternalServerError,
-                Message = context.Exception.Message,
-                Country = "co",
-                Data = string.Empty
-            };
-
-            context.Result = new ObjectResult(details);
-            context.ExceptionHandled = true;
-            context.HttpContext.Response.StatusCode = (int)StatusCodes.Status500InternalServerError;
-
-            return ;
-          
         }
     }
 
