@@ -24,8 +24,8 @@ public static class ExceptionMiddleware
                     var details = new
                     {
                         Function = context.Request.Path.Value,
-                        ErrorCode = contextFeature.Error,
-                        Message = $"{errorMessage}. {message}",
+                        ErrorCode = 500,
+                        Message = "An error occurred while processing your request.",
                         Country = "co",
                         Data = string.Empty
                     };
