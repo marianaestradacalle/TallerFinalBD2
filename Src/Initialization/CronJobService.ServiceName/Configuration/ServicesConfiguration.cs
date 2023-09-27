@@ -12,6 +12,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Services.MSQLServer;
+using SharpCompress.Common;
 
 namespace CronJobService.ServiceName.Configuration;
 public static class ServicesConfiguration
@@ -31,19 +32,18 @@ public static class ServicesConfiguration
         #endregion
 
         #region UseCase
+        services.AddSingleton<INotesUseCase>(sp => new NotesService(
+                sp.GetRequiredService<IGenericRepositoryAdapter<Notes>>(),
+                sp.GetRequiredService<ILogger<NotesService>>(),
+                sp.GetRequiredService<IMapper>(),
+                sp.GetRequiredService<INotificationServiceEventAdapter>(),
+                sp.GetRequiredService<IOptionsMonitor<BusinessSettings>>(),
+                sp.GetRequiredService<IUnitWork>(),
+                sp.GetRequiredService<INotasRepository>()
+                ));
+        #endregion UseCase
 
-        services.AddTransient<INotesUseCase>(provider => new NotesService(
-             services.BuildServiceProvider().GetService<IGenericRepositoryAdapter<Notes>>(),
-             services.BuildServiceProvider().GetService<ILogger<NotesService>>(),
-             services.BuildServiceProvider().GetService<IMapper>(),
-             services.BuildServiceProvider().GetService<INotificationServiceEventAdapter>(),
-             services.BuildServiceProvider().GetService<IOptionsMonitor<BusinessSettings>>(),
-             services.BuildServiceProvider().GetService<IUnitWork>(),
-             services.BuildServiceProvider().GetService<INotasRepository>()));
-
-    #endregion UseCase
-
-    services.AddScheduler();
+        services.AddScheduler();
         return services;
     }
 

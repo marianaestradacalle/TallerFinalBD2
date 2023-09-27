@@ -35,7 +35,9 @@ builder.Host.ConfigureAppConfiguration((context, config) =>
 
 #region ConfigureServices
 string ServiceBusConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:ServiceBusConnectionSecret").Value);
+string MongoConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:MongoConnection").Value);
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddMongoDataBase(MongoConnectionSecret, builder.Configuration["AppSettings:Database"]);
 builder.Services.RegisterAutoMapper();
 builder.Services.AddConfigureDatabaseSQL(configuration);
 builder.Services.RegisterAutoMapper();
