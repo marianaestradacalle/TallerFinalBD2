@@ -114,7 +114,7 @@ namespace Architecture.Tests
            .GetResult();
 
             //Assert
-            Assert.True(result.IsSuccessful);
+            Assert.True(result.IsSuccessful,"La capa de infraestructura de no deberia depender del proyecto api");
 
         }
         [Fact]
@@ -125,7 +125,7 @@ namespace Architecture.Tests
                 .Should().HaveNameEndingWith("Service").GetResult();
 
             //Assert
-            Assert.True(result.IsSuccessful);
+            Assert.True(result.IsSuccessful,"Todos los tipos en la carpeta Services de Application deben de terminar en Service");
         }
 
     }
