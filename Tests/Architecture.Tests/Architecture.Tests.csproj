@@ -25,9 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Src\Application\Application.csproj" />
-    <ProjectReference Include="..\Src\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\Src\Initialization\RestApiService.ServiceName\RestApiService.ServiceName.csproj" />
+    <ProjectReference Include="..\..\Src\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Src\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Src\Initialization\RestApiService.ServiceName\RestApiService.ServiceName.csproj" />
   </ItemGroup>
 
 </Project>
