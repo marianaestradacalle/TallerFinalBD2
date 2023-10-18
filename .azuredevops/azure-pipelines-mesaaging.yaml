@@ -23,7 +23,6 @@ stages:
     parameters:
       nombreDelStage: build
       conexionSonar: sc_sonarcloud_codecheck-PlantillasContenedoresC4
-      nombreDelArchivoSln: ing-dnc-bms-backend.sln
       nombreDeLaSolucion: MessagingService.ServiceName
       excluirDeSonar: "**/Src/Infraestructure/**,**/Src/Initialization/**"
       conexionSnyk: seg-snyk-co-prd-PlantillasContenedoresC4
