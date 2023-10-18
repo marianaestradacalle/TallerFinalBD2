@@ -16,14 +16,13 @@ resources:
   - repository: templates
     type: git
     name: DevOps/pipelines-templates
-    ref: integracion
+    ref: feature/quitarNombreSolucion
     
 stages:
   - template: netcore/stages/stage-createartifact.yaml@templates
     parameters:
       nombreDelStage: build
       conexionSonar: sc_sonarcloud_codecheck-PlantillasContenedoresC4
-      nombreDelArchivoSln: ing-dnc-bms-backend.sln
       nombreDeLaSolucion: RestApiService.ServiceName
       excluirDeSonar: "**/Src/Infraestructure/**,**/Src/Initialization/**"
       conexionSnyk: seg-snyk-co-prd-PlantillasContenedoresC4
