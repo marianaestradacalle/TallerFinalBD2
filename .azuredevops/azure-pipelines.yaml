@@ -16,7 +16,7 @@ resources:
   - repository: templates
     type: git
     name: DevOps/pipelines-templates
-    ref: feature/quitarNombreSolucion
+    ref: integracion
     
 stages:
   - template: netcore/stages/stage-createartifact.yaml@templates
