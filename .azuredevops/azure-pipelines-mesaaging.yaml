@@ -50,5 +50,4 @@ stages:
       grupoDeRecursosIdentity: rg-co-nop-ingenieria
 
 variables: 
-  - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/integracion') }}:
-      - group: ing-dnc-bms-clean-messaging-nop
+  

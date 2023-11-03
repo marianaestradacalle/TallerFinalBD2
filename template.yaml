@@ -1,0 +1,139 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+# some metadata about the template itself
+metadata:
+  name: ing-dnc-bms-clean
+  title: ing-dnc-bms-clean template
+  description: Plantilla para crear un proyecto dnc en arquitectura Clean
+spec:
+  owner: ids
+  type: service
+  # these are the steps which are rendered in the frontend with the form input
+  parameters:
+    - title: Completa algunos datos
+      required:
+        - name
+        - description
+      properties:
+        name:
+          title: Nombre
+          type: string
+          description: Nombre unico del componente (Debe ser igual al nombre del repositorio)
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        project:
+          title: Proyecto
+          type: string
+          description: Nombre del proyecto en el que se creara el componente, ej soluciones
+        description:
+          title: Descripcion
+          type: string
+          description: Una descripcion del componente.
+        owner:
+          title: Propietario
+          type: string
+          description: Equipo propietario del componente
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+    - title: Elija una ubicacion para el componente
+      description: >-
+        El host y la organizacion estan seteados por default, en "Project" ingresa el nombre del proyecto donde residira el componente, ej "Soluciones", y en Repository, el nombre del repositorio, que debe ser igual al nombre que ingresaste para el componente.
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Seleccione la ubicacion del repositorio
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - dev.azure.com
+            allowedOrganizations:
+              - sistecredito
+           # requestUserCredentials:
+           #   secretsKey: USER_OAUTH_TOKEN
+           #   additionalScopes:
+           #     azure:
+           #       - workflow:write
+  # here's the steps that are executed in series in the scaffolder backend
+  steps:
+    - id: fetch-base
+      name: Fetch plantilla base
+      action: fetch:template
+      input:
+        url: https://dev.azure.com/sistecredito/PlantillasContenedoresC4/_git/ing-dnc-bms-clean?version=GBfeature/backstage_template
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          project: ${{ parameters.project }}
+          
+    - id: fetch-docs
+      name: Fetch Documentacion
+      action: fetch:plain
+      input:
+        targetPath: ./Doc
+        url: https://dev.azure.com/sistecredito/DevOps/_git/ing-vue-sistedocs?path=/docs/ingenieria-de-software/plantillas-de-desarrollo-de-software/
+    - id: publish
+      name: Publicacion en azure
+      action: publish:azure
+      input:
+        allowedHosts: ['dev.azure.com']
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
+    
+    #- id: createAzurePipeline
+    #  name: Create Azure Pipeline
+    #  action: azure:pipeline:create
+    #  input:
+    #    organization: sistecredito
+    #    project: ${{ parameters.project }}
+    #    folder: "my-azure-pipelines-backstage-folder"
+    #    name: ${{ (parameters.name)+"-ci" }}
+    #    repositoryId: ${{ steps.publish.output.repositoryId }}
+    #    repositoryName: ${{ parameters.name }}
+    #    yamlPath: "./.azuredevops/azure-pipelines.yaml"
+    
+    #- id: backstage_request
+    #  name: backstage request
+    #  action: http:backstage:request
+    #  input:
+    #    method: 'GET'
+    #    path: '/azure-devops/health'
+    #- id: create_pipeline
+    #  name: create Azure pipeline
+    #  action: http:backstage:request
+    #  input:
+    #    method: 'POST'
+    #    path: ${{"/ado/sistecredito/"+ (parameters.project)+"/_apis/pipelines?api-version=7.1-preview.1"}}
+    #    headers:
+    #      content-type: 'application/json'
+    #    body:
+    #      folder: 'backstage-pipelines'
+    #      name: ${{ (parameters.name)+"-ci" }}
+    #      configuration:
+    #        type: 'yaml'
+    #        path: '.azuredevops/azure-pipelines.yaml'
+    #        repository:
+    #          id: ${{ steps.publish.output.repositoryId }}
+    #          name: ${{ parameters.name }}
+    #          type: "azureReposGit"
+          
+    - id: register
+      name: Registro en catalogo de servicios
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{"https://dev.azure.com/sistecredito/" + (parameters.project) + "/_git/" + (parameters.name)}}
+        catalogInfoPath: "/catalog-info.yaml"
+  output:
+    
+    links:
+      - title: Link del repositorio en Azure
+        url: ${{ steps.publish.output.remoteUrl }}
+        icon: website
+      - title: Link al archivo de definicion del componente (catalog-info.yaml)
+        url: ${{ steps.register.output.catalogInfoUrl }}
+        icon: catalog
