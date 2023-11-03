@@ -64,7 +64,7 @@ spec:
       name: Fetch plantilla base
       action: fetch:template
       input:
-        url: https://dev.azure.com/sistecredito/PlantillasContenedoresC4/_git/ing-dnc-bms-clean?version=GBfeature/backstage_template
+        url: https://dev.azure.com/sistecredito/PlantillasContenedoresC4/_git/ing-dnc-bms-clean?version=GBmaster
         values:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
