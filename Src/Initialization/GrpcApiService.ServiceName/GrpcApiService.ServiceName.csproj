@@ -18,12 +18,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(MicrosoftAspNetCoreMvcNewtonsoftJson)" />
 		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="$(MicrosoftExtensionsPlatformAbstractions)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="$(MicrosoftExtensionsConfigurationAzureKeyVault)" />
-		<PackageReference Include="Serilog" Version="$(Serilog)" />
 		<PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCore)" />
-		<PackageReference Include="Serilog.Enrichers.Span" Version="$(SerilogEnrichersSpan)" />
-		<PackageReference Include="Serilog.Extensions.Hosting" Version="$(SerilogExtensionsHosting)" />
-		<PackageReference Include="Serilog.Sinks.Console" Version="$(SerilogSinksConsole)" />
-		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="$(SerilogSinksElasticsearch)" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCore)" />
 		<PackageReference Include="SC.Configuration.Provider.Mongo" Version="$(SCConfigurationProviderMongo)" />
 		<PackageReference Include="Calzolari.Grpc.AspNetCore.Validation" Version="$(CalzolariGrpcAspNetCoreValidation)" />
@@ -37,7 +32,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Application\Application.csproj" />
-	  <ProjectReference Include="..\..\Core\Core.csproj" />
 	  <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
 	</ItemGroup>
 

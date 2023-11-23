@@ -15,16 +15,6 @@ using Services.MSQLServer;
 namespace GrpcApiService.ServiceName.Configuration;
 public static class ServicesConfiguration
 {
-    public static IServiceCollection RegisterCors(this IServiceCollection services, string policyName)
-         => services.AddCors(o =>
-         {
-             o.AddPolicy(policyName, builder =>
-             {
-                 builder.AllowAnyOrigin()
-                               .AllowAnyMethod()
-                               .AllowAnyHeader();
-             });
-         });
     public static IServiceCollection RegisterAutoMapper(this IServiceCollection services)
     {
         services.AddAutoMapper(typeof(MappingProfile));

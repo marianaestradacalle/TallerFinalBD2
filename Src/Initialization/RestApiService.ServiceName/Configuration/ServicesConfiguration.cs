@@ -21,25 +21,10 @@ using System.Text.Json.Serialization;
 namespace RestApiService.ServiceName.Configuration;
 public static class ServicesConfiguration
 {
-    public static IServiceCollection RegisterCors(this IServiceCollection services, string policyName)
-         => services.AddCors(o =>
-         {
-             o.AddPolicy(policyName, builder =>
-             {
-                 builder.AllowAnyOrigin()
-                               .AllowAnyMethod()
-                               .AllowAnyHeader();
-             });
-         });
-
-    public static IServiceCollection RegisterAutoMapper(this IServiceCollection services)
-    {
-        services.AddAutoMapper(typeof(MappingProfile));
-        return services;
-    }
-
     public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration, string servicesBusConnection)
     {
+        services.RegisterAutoMapper();
+        services.AddConfigureDatabaseSQL(configuration);
         #region Adaptadores
         services.AddScoped<DbContext, ContextSQLServer>();
         services.AddScoped<IGenericRepositoryAdapter<Notes>, GenericRepositoryService<Notes>>();

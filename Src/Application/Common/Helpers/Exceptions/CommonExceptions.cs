@@ -19,10 +19,6 @@ public class CommonExceptions : Exception
 
         ServiceException serviceException = settings.ServiceExceptions?.FirstOrDefault(_ => _.Id.Equals(exceptionType.ToString()))
             ?? serviceExceptionDefault;
-
-        if (serviceException is null)
-            throw new NullReferenceException($"No se encuentra configuración de excepciones de negocio para el tipo {exceptionType}.");
-
         return new(serviceException.Message, serviceException.Code);
     }
 }

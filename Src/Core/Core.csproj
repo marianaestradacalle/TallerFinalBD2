@@ -5,10 +5,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="$(AutoMapper)" />
-		<PackageReference Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCore)" />
-		<PackageReference Include="MongoDB.Bson" Version="$(MongoDBBson)" />
-	</ItemGroup>
-
 </Project>

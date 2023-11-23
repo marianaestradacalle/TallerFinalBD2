@@ -41,6 +41,7 @@ public class NotesService : INotesUseCase
     public async Task<NoteOutput> CreateNote(NoteInput data)
     {
         Notes notes = _mapper.Map<NoteInput, Notes>(data);
+        var pruebaMongo = await _notasRepository.AddNote(notes); //Test MongoBD
         await _notesRepository.AddAsync(notes);
         await _unitWork.SaveAsync();
         return _mapper.Map<Notes, NoteOutput>(notes);
@@ -55,9 +56,9 @@ public class NotesService : INotesUseCase
     public async Task<IEnumerable<SimplifiedNoteOutput>> GetNotes()
     {
         //prueba parametro mongo provider
-        string param = _settings.CRON_SONDA_JOB;
+        string param = _settings.CRON_SONDA_JOB; //Test mongoProvider
         //prueba consulata mongo driver
-        var pruebaMongo = await _notasRepository.GetAllNotes();
+        var pruebaMongo = await _notasRepository.GetAllNotes();//Test MongoBD
 
         // throw BusinessException.Throw(_settings,BusinessExceptionTypes.NotControlledException.ToString());
 

@@ -22,9 +22,6 @@ namespace Common.Helpers.Exceptions
                 settings.ServiceExceptions?.FirstOrDefault(_ => _.Id.Equals(code))
                 ?? serviceExceptionDefault;
 
-            if (serviceException is null)
-                throw new NullReferenceException($"No se encuentra configuración de excepciones de negocio para el tipo {code}.");
-
             return new(serviceException.Message, serviceException.Code);
         }
 

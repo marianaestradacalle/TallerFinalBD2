@@ -40,11 +40,5 @@ builder.Configuration.AddMongoProvider(nameof(MongoConfigurationProvider), mongo
 #endregion Service Configuration
 
 WebApplication app = builder.Build();
-
-if (!app.Environment.IsProduction())
-{
-    app.UseDeveloperExceptionPage();
-}
-
 app.UseStaticFiles();
 app.Run();

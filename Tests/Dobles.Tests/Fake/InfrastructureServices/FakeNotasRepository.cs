@@ -22,6 +22,15 @@ public class FakeNotasRepository : INotasRepository
 
         _mapper = (IMapper)_fakeMapper.GetFakeMapper();
     }
+
+    public async Task<string> AddNote(Notes notes)
+    {
+        return await Task.Run(() =>
+        {
+            return _mapper.Map<string>(notes.Id);
+        });
+
+    }
     public async Task<dynamic> GetAllNotes()
     {
         return await  Task.Run(() =>

@@ -1,9 +1,8 @@
-using Application.Interfaces.Infrastructure;
-using Core.Entities.Mongo;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Infrastructure.Services.MongoDB;
-public class Context : IContext
+public class Context
 {
     private static volatile Context _instance;
     private static readonly object SyncLock = new object();
@@ -26,5 +25,5 @@ public class Context : IContext
 
         return _instance;
     }
-    public IMongoCollection<Notes> Note => _database.GetCollection<Notes>("Notes");
+    public IMongoCollection<BsonDocument> Note => _database.GetCollection<BsonDocument>("Notes");
 }

@@ -20,17 +20,11 @@
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtensionsMicrosoftDependencyInjection)" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="$(MicrosoftVisualStudioAzureContainersToolsTargets)" />
 		<PackageReference Include="SC.Configuration.Provider.Mongo" Version="$(SCConfigurationProviderMongo)" />
-		<PackageReference Include="Serilog" Version="$(Serilog)" />
 		<PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCore)" />
-		<PackageReference Include="Serilog.Enrichers.Span" Version="$(SerilogEnrichersSpan)" />
-		<PackageReference Include="Serilog.Extensions.Hosting" Version="$(SerilogExtensionsHosting)" />
-		<PackageReference Include="Serilog.Sinks.Console" Version="$(SerilogSinksConsole)" />
-		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="$(SerilogSinksElasticsearch)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="$(MicrosoftExtensionsConfigurationAzureKeyVault)" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Application\Application.csproj" />
-	  <ProjectReference Include="..\..\Core\Core.csproj" />
 	  <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
 	</ItemGroup>
 

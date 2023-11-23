@@ -12,7 +12,6 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Services.MSQLServer;
-using SharpCompress.Common;
 
 namespace CronJobService.ServiceName.Configuration;
 public static class ServicesConfiguration

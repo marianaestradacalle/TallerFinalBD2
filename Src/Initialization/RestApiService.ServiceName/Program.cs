@@ -1,15 +1,11 @@
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using FluentValidation;
 using Infrastructure;
 using RestApi.Middlewares;
-using RestApi.Validations;
 using RestApiService.ServiceName.Configuration;
-using RestApiService.ServiceName.Validations;
 using SC.Configuration.Provider.Mongo;
 using Serilog;
-using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 
 // Configuraciones servicios
@@ -47,9 +43,6 @@ builder.Configuration.AddJsonProvider();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMongoDataBase(MongoConnectionSecret, builder.Configuration.GetSection("AppSettings:Database").Value);
-builder.Services.RegisterAutoMapper();
-builder.Services.AddConfigureDatabaseSQL(configuration);
-builder.Services.RegisterAutoMapper();
 builder.Services.RegisterServices(configuration, ServiceBusConnectionSecret);
 builder.Services.AddHealthChecks();
 builder.Host.UseSerilog((hostContext, services, configuration) =>
@@ -59,11 +52,7 @@ builder.Host.UseSerilog((hostContext, services, configuration) =>
 
 // Configuraciones de aplicación
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    
-}
+
 app.UseSwagger();
 app.UseSwaggerUI();
 

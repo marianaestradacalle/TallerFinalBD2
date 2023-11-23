@@ -59,7 +59,6 @@ ApplicationBuilder.AddJobs(settings, creatorNotesJob: creatorNotesJob);
 app.UseStaticFiles(); // For the wwwroot folder
 if (!app.Environment.IsProduction())
 {
-    app.UseDeveloperExceptionPage();
     app.UseRouting();
 
     app.UseEndpoints(endpoints =>
@@ -68,7 +67,6 @@ if (!app.Environment.IsProduction())
         {
             await context.Response.WriteAsync("");
         });
-        // endpoints.MapHangfireDashboard();
     });
 }
 else

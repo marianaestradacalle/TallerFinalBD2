@@ -48,7 +48,6 @@ builder.WebHost.ConfigureKestrel(options =>
         listenOptions.Protocols = HttpProtocols.Http2;
     });
 });
-
 builder.Services
     .AddMongoDataBase(MongoConnectionSecret, builder.Configuration.GetSection("AppSettings:Database").Value)
     .RegisterAutoMapper()
@@ -56,18 +55,13 @@ builder.Services
     .RegisterAutoMapper()
     .RegisterServices(configuration, ServiceBusConnectionSecret)
     .AddGrpConfig();
-
 builder.Services
     .AddHealthChecks();
-
-
 #endregion Service Configuration
 
 builder.Services.AddGrpcValidations();
-
 builder.Services.AddValidator();
 builder.Services.AddHealth();
-
 WebApplication app = builder.Build();
 
 #region Enable middle-ware to serve generated Swagger as a JSON endpoint.
@@ -87,10 +81,8 @@ app.UseEndpoints(endpoints =>
                 "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
         });
 });
-
 app.MapGrpcHealthChecksService();
 app.Run();
-
 #endregion
 
 #region ConfigurationKeyVault

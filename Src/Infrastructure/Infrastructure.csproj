@@ -9,6 +9,8 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftEntityFrameworkCore)" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkCoreSqlServer)" />
+		<PackageReference Include="MongoDB.Driver" Version="$(MongoDBDriver)" />
+		<PackageReference Include="reactive-commons-netcore" Version="$(reactivecommonsnetcore)" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -35,7 +35,7 @@ public static class InfrastructureDependencyInjection
     public static IServiceCollection AddMongoDataBase(this IServiceCollection services, string mongoConnectionString, string dataBaseName)
     {
         services.AddScoped<INotasRepository, NotasAdapter>();
-        services.AddSingleton<IContext>(provider => new Context(mongoConnectionString, $"{dataBaseName}"));
+        services.AddSingleton(provider => new Context(mongoConnectionString, $"{dataBaseName}"));
         return services;
     }
 }

@@ -10,8 +10,6 @@
 		<PackageReference Include="AutoMapper.Data" Version="$(AutoMapperData)" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtensionsMicrosoftDependencyInjection)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsLoggingAbstractions)" />
-		<PackageReference Include="MongoDB.Driver" Version="$(MongoDBDriver)" />
-		<PackageReference Include="reactive-commons-netcore" Version="$(reactivecommonsnetcore)" />
 	</ItemGroup>
 
 	<ItemGroup>
