@@ -7,10 +7,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(MicrosoftEntityFrameworkCore)" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkCoreSqlServer)" />
-		<PackageReference Include="MongoDB.Driver" Version="$(MongoDBDriver)" />
-		<PackageReference Include="reactive-commons-netcore" Version="$(reactivecommonsnetcore)" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+		<PackageReference Include="MongoDB.Driver" />
+		<PackageReference Include="reactive-commons-netcore" />
 	</ItemGroup>
 
 	<ItemGroup>

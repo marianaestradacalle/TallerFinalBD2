@@ -7,26 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCore)" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(MicrosoftAspNetCoreMvcNewtonsoftJson)" />
-		<PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="$(AzureExtensionsAspNetCoreConfigurationSecrets)" />
-		<PackageReference Include="Azure.Identity" Version="$(AzureIdentity)" />
-		<PackageReference Include="AutoMapper.Data" Version="$(AutoMapperData)" />
-		<PackageReference Include="AutoMapper" Version="$(AutoMapper)" />
-		<PackageReference Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCore)" />
-		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="$(MicrosoftExtensionsPlatformAbstractions)" />
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtensionsMicrosoftDependencyInjection)" />
-		<PackageReference Include="SC.Configuration.Provider.Mongo" Version="$(SCConfigurationProviderMongo)" />
-		<PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCore)" />
-		<PackageReference Include="AspNetCore.HealthChecks.Redis" Version="$(AspNetCoreHealthChecksRedis)" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="$(MicrosoftExtensionsConfigurationAzureKeyVault)" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+		<PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" />
+		<PackageReference Include="Azure.Identity" />
+		<PackageReference Include="AutoMapper.Data" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="FluentValidation.AspNetCore" />
+		<PackageReference Include="Microsoft.Extensions.PlatformAbstractions" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+		<PackageReference Include="SC.Configuration.Provider.Mongo" />
+		<PackageReference Include="Serilog.AspNetCore" />
+		<PackageReference Include="AspNetCore.HealthChecks.Redis" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" />
 
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftExtensionsHosting)" />
-		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="$(MicrosoftVisualStudioAzureContainersToolsTargets)" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Application\Application.csproj" />

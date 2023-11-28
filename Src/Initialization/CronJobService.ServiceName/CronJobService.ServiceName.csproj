@@ -6,22 +6,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Coravel" Version="$(Coravel)" />
-		<PackageReference Include="Hangfire" Version="$(Hangfire)" />
-		<PackageReference Include="Hangfire.AspNetCore" Version="$(HangfireAspNetCore)" />
-		<PackageReference Include="Hangfire.SqlServer" Version="$(HangfireSqlServer)" />
-		<PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="$(AzureExtensionsAspNetCoreConfigurationSecrets)" />
-		<PackageReference Include="Azure.Identity" Version="$(AzureIdentity)" />
-		<PackageReference Include="AutoMapper.Data" Version="$(AutoMapperData)" />
-		<PackageReference Include="AutoMapper" Version="$(AutoMapper)" />
-		<PackageReference Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCore)" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(MicrosoftAspNetCoreMvcNewtonsoftJson)" />
-		<PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="$(MicrosoftIdentityModelClientsActiveDirectory)" />
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtensionsMicrosoftDependencyInjection)" />
-		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="$(MicrosoftVisualStudioAzureContainersToolsTargets)" />
-		<PackageReference Include="SC.Configuration.Provider.Mongo" Version="$(SCConfigurationProviderMongo)" />
-		<PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCore)" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="$(MicrosoftExtensionsConfigurationAzureKeyVault)" />
+		<PackageReference Include="Coravel" />
+		<PackageReference Include="Hangfire" />
+		<PackageReference Include="Hangfire.AspNetCore"/>
+		<PackageReference Include="Hangfire.SqlServer"/>
+		<PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" />
+		<PackageReference Include="Azure.Identity" />
+		<PackageReference Include="AutoMapper.Data"/>
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="FluentValidation.AspNetCore" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+		<PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+		<PackageReference Include="SC.Configuration.Provider.Mongo" />
+		<PackageReference Include="Serilog.AspNetCore"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Application\Application.csproj" />
