@@ -1,19 +1,15 @@
 ﻿using Application;
 using Application.Common.Utilities;
-using Application.DTOs;
 using Application.Interfaces.Infrastructure;
-using Core.Entities;
-using FluentValidation;
 using Infrastructure;
+using Infrastructure.Services.MongoDB;
+using Infrastructure.Services.MSQLServer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using RestApi.Filters;
 using RestApi.Health;
-using RestApi.Validations;
-using RestApiService.ServiceName.Validations;
 using Services.MSQLServer;
-using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 using System.Net.Mime;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -25,15 +21,13 @@ public static class ServicesConfiguration
     {
         services.RegisterAutoMapper();
         services.AddConfigureDatabaseSQL(configuration);
+
         #region Adaptadores
         services.AddScoped<DbContext, ContextSQLServer>();
-        services.AddScoped<IGenericRepositoryAdapter<Notes>, GenericRepositoryService<Notes>>();
-        services.AddScoped<IGenericRepositoryAdapter<NoteLists>, GenericRepositoryService<NoteLists>>();
-        services.AddScoped<IUnitWork, UnitWork>();
-
-        services.AddAsyncGateway<dynamic>(servicesBusConnection);
-        services.AddAdaptersAzServiceBus();
+        services.AddScoped<IGenericRepositoryAdapter<EventoAdapter>, GenericRepositoryService<EventoAdapter>>();
+        services.AddScoped<IGenericRepositoryAdapter<AsistenteAdapter>, GenericRepositoryService<AsistenteAdapter>>();
         #endregion Adaptadores
+
         #region UseCases
         services.AddUseCases();
         #endregion UseCases
@@ -57,18 +51,6 @@ public static class ServicesConfiguration
             options.Filters.Add<SuccessFilter>();
         });
 
-        return services;
-    }
-
-    public static IServiceCollection AddValidators(this IServiceCollection services)
-    {
-        services.AddValidatorsFromAssemblyContaining<NoteListInputValidation>();
-        services.AddFluentValidationAutoValidation(configuration =>
-        {
-            configuration.DisableBuiltInModelValidation = false;
-
-            configuration.OverrideDefaultResultFactoryWith<CustomResultFactory>();
-        });
         return services;
     }
 

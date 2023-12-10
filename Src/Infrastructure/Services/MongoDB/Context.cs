@@ -1,11 +1,11 @@
-using MongoDB.Bson;
+using Core.Entities;
 using MongoDB.Driver;
 
 namespace Infrastructure.Services.MongoDB;
 public class Context
 {
-    private static volatile Context _instance;
-    private static readonly object SyncLock = new object();
+    private static volatile Context? _instance;
+    private static readonly object SyncLock = new();
     private readonly IMongoDatabase _database;
 
     public Context(string connectionString, string databaseName)
@@ -19,11 +19,10 @@ public class Context
         if (_instance is null)
             lock (SyncLock)
             {
-                if (_instance == null)
-                    _instance = new Context(connectionString, databaseName);
+                _instance ??= new Context(connectionString, databaseName);
             }
 
         return _instance;
     }
-    public IMongoCollection<BsonDocument> Note => _database.GetCollection<BsonDocument>("Notes");
+    public IMongoCollection<EventoEntity> Evento => _database.GetCollection<EventoEntity>("Eventos");
 }
