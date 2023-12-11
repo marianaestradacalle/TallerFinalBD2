@@ -1,5 +1,5 @@
-﻿namespace Application.DTOs;
-public class ProgramaDTO
+﻿namespace Core.Entities;
+public class ProgramaEntity
 {
     public int Codigo { get; set; }
     public string? Nombre { get; set; }
