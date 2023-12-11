@@ -1,12 +1,14 @@
-﻿namespace Application.DTOs;
+﻿using Application.Common.Helpers.Enum;
+
+namespace Application.DTOs;
 public class AsistenteDTO
 {
-    public int Identificación { get; set; }
-    public int NombreUsuario { get; set; }
-    public int NombreCompleto { get; set; }
-    public int RolAsistente { get; set; }
-    public int Email { get; set; }
-    public int Ciudad { get; set; }
-    public int Celular { get; set; }
-    public int Categoria { get; set; }
+    public string? Identificación { get; set; }
+    public string? NombreUsuario { get; set; }
+    public string? NombreCompleto { get; set; }
+    public string? RolAsistente { get; set; }
+    public string? Email { get; set; }
+    public string? Ciudad { get; set; }
+    public string? Celular { get; set; }
+    public string? Categoria { get; set; }
 }

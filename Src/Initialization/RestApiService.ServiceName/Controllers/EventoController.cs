@@ -15,21 +15,21 @@ public class EventoController : ControllerBase
         _eventoUseCases = eventoUseCases;
     }
 
-    [HttpPost("post")]
+    [HttpPost("CrearEvento")]
     [ProducesResponseType(200)]
     public async Task<IActionResult> CrearEvento([FromBody] EventoDTO body)
     {
         return Ok(await _eventoUseCases.CrearEvento(body));
     }
 
-    [HttpGet("getall")]
+    [HttpGet("ObtenerEventos")]
     [ProducesResponseType(200)]
     public IActionResult ObtenerTodosLosEvento()
     {
         return Ok(_eventoUseCases.ObtenerEventos());
     }
 
-    [HttpDelete("delete")]
+    [HttpDelete("ObtenerEventoPorId")]
     [ProducesResponseType(200)]
     public async Task<IActionResult> ObtenerEventoPoridEvento([FromQuery] string idEvento)
     {
@@ -37,7 +37,7 @@ public class EventoController : ControllerBase
         return Ok();
     }
 
-    [HttpDelete("checked-isolate-eventos")]
+    [HttpDelete("EliminarEvento")]
     [ProducesResponseType(200)]
     public async Task<IActionResult> EliminarEvento([FromQuery] string idEvento)
     {
@@ -45,7 +45,7 @@ public class EventoController : ControllerBase
         return Ok();
     }
 
-    [HttpPost("eventos/states")]
+    [HttpPost("ActualizarEvento")]
     [ProducesResponseType(200)]
     public async Task<IActionResult> ActualizarEvento([FromBody] EventoDTO body)
     {

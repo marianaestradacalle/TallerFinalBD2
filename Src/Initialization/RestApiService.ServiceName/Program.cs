@@ -6,7 +6,7 @@ using Serilog;
 
 
 // Configuraciones servicios
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 IWebHostEnvironment environment = builder.Environment;
 IConfiguration configuration = builder.Configuration;
 
@@ -30,14 +30,13 @@ builder.Host.ConfigureAppConfiguration((context, config) =>
 
 builder.Services.AddControllers();
 builder.Services.UseRestApiFilters();
-string ServiceBusConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:ServiceBusConnection").Value);
-string MongoConnectionSecret = builder.Configuration.GetValue<string>(builder.Configuration.GetSection("Secrets:MongoConnection").Value);
+string MongoConnectionSecret = builder.Configuration["MongoConfigurationProvider:ConnectionString"];
 
 builder.Configuration.AddJsonProvider();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMongoDataBase(MongoConnectionSecret, builder.Configuration.GetSection("AppSettings:Database").Value);
-builder.Services.RegisterServices(configuration, ServiceBusConnectionSecret);
+builder.Services.AddMongoDataBase(MongoConnectionSecret, builder.Configuration["MongoConfigurationProvider:DatabaseName"]);
+builder.Services.RegisterServices(configuration);
 builder.Services.AddHealthChecks();
 builder.Host.UseSerilog((hostContext, services, configuration) =>
 {
@@ -61,12 +60,12 @@ app.Run();
 #region ConfigurationMongoProvider
 void AddMongoprovider(IConfigurationBuilder config, IConfigurationRoot configurationRoot)
 {
-    var settings = new MongoAppsettingsConfiguration();
+    MongoAppsettingsConfiguration? settings = new();
     configurationRoot.GetSection("MongoConfigurationProvider").Bind(settings);
     config.AddMongoConfiguration(options =>
     {
         options.CollectionName = configuration["MongoConfigurationProvider:CollectionName"];
-        options.ConnectionString = configuration.GetValue<string>(builder.Configuration.GetSection("MongoConfigurationProvider:ConnectionString").Value); //settings.ConnectionString];
+        options.ConnectionString = configuration["MongoConfigurationProvider:ConnectionString"]; //settings.ConnectionString];
         options.DatabaseName = configuration["MongoConfigurationProvider:DatabaseName"];
         options.ReloadOnChange = true;
     });

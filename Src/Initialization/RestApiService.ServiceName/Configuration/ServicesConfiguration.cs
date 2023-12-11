@@ -17,15 +17,15 @@ using System.Text.Json.Serialization;
 namespace RestApiService.ServiceName.Configuration;
 public static class ServicesConfiguration
 {
-    public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration, string servicesBusConnection)
+    public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterAutoMapper();
         services.AddConfigureDatabaseSQL(configuration);
 
         #region Adaptadores
         services.AddScoped<DbContext, ContextSQLServer>();
-        services.AddScoped<IGenericRepositoryAdapter<EventoAdapter>, GenericRepositoryService<EventoAdapter>>();
-        services.AddScoped<IGenericRepositoryAdapter<AsistenteAdapter>, GenericRepositoryService<AsistenteAdapter>>();
+        services.AddScoped<IEventoRepository,EventoAdapter>();
+        services.AddScoped<IGenericRepositoryAdapter<IAsistenteRepository>, GenericRepositoryService<IAsistenteRepository>>();
         #endregion Adaptadores
 
         #region UseCases

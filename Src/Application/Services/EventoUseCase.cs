@@ -20,7 +20,6 @@ public class EventoUseCase : IEventoUseCase
         }
         catch (Exception)
         {
-
             throw;
         }
     }
@@ -33,7 +32,6 @@ public class EventoUseCase : IEventoUseCase
         }
         catch (Exception)
         {
-
             throw;
         };
     }
@@ -46,7 +44,6 @@ public class EventoUseCase : IEventoUseCase
         }
         catch (Exception)
         {
-
             throw;
         }
     }
@@ -59,7 +56,6 @@ public class EventoUseCase : IEventoUseCase
         }
         catch (Exception)
         {
-
             throw;
         }
     }
@@ -72,7 +68,6 @@ public class EventoUseCase : IEventoUseCase
         }
         catch (Exception)
         {
-
             throw;
         }
     }

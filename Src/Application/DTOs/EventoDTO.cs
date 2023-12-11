@@ -6,7 +6,7 @@ public class EventoDTO
     public string? Descripcion { get; set; }
     public string? Categoria { get; set; }
     public DateTime? Fecha { get; set; }
-    public int Lugar { get; set; }
+    public string? Lugar { get; set; }
     public AsistenteDTO? InformacionAsistente { get; set; }
     public FacultadDTO? FacultadesOrganizadoras { get; set; }
     public ComentarioDTO? Comentarios { get; set; }
